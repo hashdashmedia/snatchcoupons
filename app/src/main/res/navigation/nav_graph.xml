@@ -10,8 +10,8 @@
         android:name="com.app.couponapp.SplashFragment"
         tools:layout="@layout/splash_fragment"/>
     <fragment
-        android:id="@+id/nav_OptionOne"
+        android:id="@+id/navHomePage"
         android:label="Option fragment"
-        android:name="com.app.couponapp.OptioTwoFragment"
-        tools:layout="@layout/fragment_optio_two"/>
+        android:name="com.app.couponapp.HomePageFragment"
+        tools:layout="@layout/fragment_home_page"/>
 </navigation>

@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.databinding.ActivityMainBinding
+import java.lang.reflect.Array.set
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,29 +24,38 @@ class MainActivity : AppCompatActivity() {
         setUpDrawer()
         setDrawerListener()
     }
-   fun setUpDrawer(){
+   private fun setUpDrawer(){
        setSupportActionBar(binding.contentMainLayout.appBarLayout.toolbar)
        navController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
-       mAppBarConfiguration = AppBarConfiguration.Builder(
-           navController.graph)
-           .setOpenableLayout(binding.drawerLayout)
-           .build()
+      // mAppBarConfiguration = AppBarConfiguration.Builder(navController.graph)
+       mAppBarConfiguration = AppBarConfiguration(setOf(R.id.navHomePage),binding.drawerLayout)
+           /*.setOpenableLayout(binding.drawerLayout)
+           .build()*/
        setupActionBarWithNavController(this, navController, mAppBarConfiguration)
        setupWithNavController(binding.navigationView, navController)
 
    }
-    fun setDrawerListener(){
+    private fun setDrawerListener(){
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            when(destination.id){ }
-            supportActionBar?.setTitle("")
+            when(destination.id){
+                R.id.navHomePage->{
+
+                }else->{}
+            }
+            supportActionBar?.title = ""
         }
-        binding.tvOptionOne.setOnClickListener {
-            navController.navigate(R.id.nav_OptionOne)
-        }
+        /*binding.tvOptionOne.setOnClickListener {
+            navController.navigate(R.id.navHomePage)
+        }*/
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         return (navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp())
+    }
+
+    override fun onNavigateUp(): Boolean {
+        return super.onNavigateUp()
     }
 }
