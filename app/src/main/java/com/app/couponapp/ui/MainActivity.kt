@@ -1,16 +1,16 @@
-package com.app.couponapp
+package com.app.couponapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.app.couponapp.R
 import com.app.couponapp.databinding.ActivityMainBinding
-import java.lang.reflect.Array.set
+import com.app.couponapp.hideStatusActionBar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private fun setDrawerListener(){
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when(destination.id){
-                R.id.navHomePage->{
+                R.id.navHomePage ->{
 
                 }else->{}
             }

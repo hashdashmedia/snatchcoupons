@@ -7,11 +7,11 @@
     <fragment
         android:id="@+id/nav_splash"
         android:label="Splash fragment"
-        android:name="com.app.couponapp.SplashFragment"
+        android:name="com.app.couponapp.ui.SplashFragment"
         tools:layout="@layout/splash_fragment"/>
     <fragment
         android:id="@+id/navHomePage"
         android:label="Option fragment"
-        android:name="com.app.couponapp.HomePageFragment"
+        android:name="com.app.couponapp.ui.HomePageFragment"
         tools:layout="@layout/fragment_home_page"/>
 </navigation>

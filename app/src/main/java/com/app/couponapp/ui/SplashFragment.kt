@@ -1,21 +1,19 @@
-package com.app.couponapp
+package com.app.couponapp.ui
 
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.app.couponapp.R
 import com.app.couponapp.databinding.SplashFragmentBinding
+import com.app.couponapp.ui.BaseFragment
 
 class SplashFragment : BaseFragment<SplashFragmentBinding>() {
     private val splashDelay = 3000L
 
     override fun getViewBinding()=SplashFragmentBinding.inflate(layoutInflater)
-    override fun getFragmentLayout()=R.layout.splash_fragment
+    override fun getFragmentLayout()= R.layout.splash_fragment
     override fun observe() {}
     override fun init() {
         showOrHideSplash()

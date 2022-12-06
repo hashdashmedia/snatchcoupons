@@ -1,4 +1,4 @@
-package com.app.couponapp
+package com.app.couponapp.util
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData

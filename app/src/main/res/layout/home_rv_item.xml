@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:clipToPadding="false"
+    android:elevation="0.5dp"
+    android:outlineProvider="bounds"
+    android:paddingTop="18dp">
+<androidx.appcompat.widget.AppCompatTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAllCaps="true"
+    android:text="@string/take_an_extra"
+    android:textColor="@color/black"
+    android:textStyle="normal"
+    android:textSize="@dimen/_9ssp"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="4dp">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/yellow1"
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:text="60%"
+            android:textColor="@color/red1"
+            android:textStyle="normal"
+            android:textSize="@dimen/_25ssp"
+            android:layout_marginHorizontal="10dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/yellow1"
+            android:layout_weight="1"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="@string/discount_on_new_arrivals"
+        android:textColor="@color/grey1"
+        android:textStyle="normal"
+        android:textSize="@dimen/_7ssp"/>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dash_rectangle_black"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:textAllCaps="true"
+        android:text="@string/discount_on_new_arrivals"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/_7ssp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_red"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:textAllCaps="true"
+        android:text="@string/show_coupon_code"
+        android:textColor="@color/white"
+        android:textStyle="normal"
+        android:textSize="@dimen/_7ssp"
+        />
+    </FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textAllCaps="false"
+        android:text="@string/expire_date"
+        android:textColor="@color/grey2"
+        android:textStyle="normal"
+        android:textSize="@dimen/_7ssp"/>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="5dp">
+
+       <View
+           android:id="@+id/viewTopSuccess"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:layout_alignEnd="@id/ll_success"
+           android:layout_alignParentTop="true"
+           android:layout_marginTop="10dp"
+           android:background="#A3A2A2" />
+
+       <androidx.appcompat.widget.LinearLayoutCompat
+           android:id="@+id/ll_success"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/viewTopSuccess"
+           android:layout_toStartOf="@id/ivShare"
+           android:gravity="center">
+
+           <androidx.appcompat.widget.LinearLayoutCompat
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:gravity="center">
+
+               <androidx.appcompat.widget.AppCompatTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginVertical="7dp"
+                   android:gravity="center_vertical"
+                   android:text="@string/_100_success"
+                   android:textAllCaps="true"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_7ssp"
+                   android:textStyle="normal" />
+
+               <ImageView
+                   android:layout_width="14dp"
+                   android:layout_height="14dp"
+                   android:layout_marginStart="10dp"
+                   android:src="@mipmap/ic_launcher" />
+           </androidx.appcompat.widget.LinearLayoutCompat>
+
+           <View
+               android:layout_width="1dp"
+               android:layout_height="match_parent"
+               android:layout_marginHorizontal="20dp"
+               android:background="#A3A2A2" />
+
+           <androidx.appcompat.widget.LinearLayoutCompat
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:gravity="center">
+
+               <androidx.appcompat.widget.AppCompatTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginVertical="7dp"
+                   android:gravity="center_vertical"
+                   android:text="@string/_100_success"
+                   android:textAllCaps="true"
+                   android:textColor="@color/black"
+                   android:textSize="@dimen/_7ssp"
+                   android:textStyle="normal" />
+
+               <ImageView
+                   android:layout_width="14dp"
+                   android:layout_height="14dp"
+                   android:layout_marginStart="10dp"
+                   android:src="@mipmap/ic_launcher" />
+           </androidx.appcompat.widget.LinearLayoutCompat>
+
+       </androidx.appcompat.widget.LinearLayoutCompat>
+
+       <View
+           android:id="@+id/viewBottomSuccess"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:layout_below="@id/ll_success"
+           android:layout_alignEnd="@id/ll_success"
+           android:background="#A3A2A2"
+           android:visibility="invisible" />
+
+       <ImageView
+           android:id="@+id/ivShare"
+           android:layout_width="30dp"
+           android:layout_height="match_parent"
+           android:layout_alignBottom="@id/viewBottomSuccess"
+           android:layout_alignParentEnd="true"
+           android:layout_marginBottom="1dp"
+           android:scaleType="centerCrop"
+           android:src="@mipmap/ic_launcher" />
+   </RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -2,5 +2,10 @@
     <string name="app_name">CouponApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="grey1">Quick Links</string>
+    <string name="quick_link">Quick Links</string>
+    <string name="expire_date">Expires: 30/09/2022</string>
+    <string name="_100_success">100% success</string>
+    <string name="take_an_extra">Take An Extra</string>
+    <string name="discount_on_new_arrivals">Discount on new Arrivals</string>
+    <string name="show_coupon_code">Show Coupon code</string>
 </resources>
