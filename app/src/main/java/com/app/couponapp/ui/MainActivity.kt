@@ -10,8 +10,10 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.R
 import com.app.couponapp.databinding.ActivityMainBinding
-import com.app.couponapp.hideStatusActionBar
+import com.app.couponapp.util.hideStatusActionBar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController:NavController

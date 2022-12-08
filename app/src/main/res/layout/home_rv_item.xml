@@ -5,9 +5,6 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:clipToPadding="false"
-    android:elevation="0.5dp"
-    android:outlineProvider="bounds"
     android:paddingTop="18dp">
 <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="wrap_content"
@@ -16,7 +13,7 @@
     android:text="@string/take_an_extra"
     android:textColor="@color/black"
     android:textStyle="normal"
-    android:textSize="@dimen/_9ssp"/>
+    android:textSize="@dimen/_10ssp"/>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,7 +49,7 @@
         android:text="@string/discount_on_new_arrivals"
         android:textColor="@color/grey1"
         android:textStyle="normal"
-        android:textSize="@dimen/_7ssp"/>
+        android:textSize="@dimen/_8ssp"/>
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +64,7 @@
         android:text="@string/discount_on_new_arrivals"
         android:textColor="@color/black"
         android:textStyle="normal"
-        android:textSize="@dimen/_7ssp"/>
+        android:textSize="@dimen/_10ssp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -79,7 +76,7 @@
         android:text="@string/show_coupon_code"
         android:textColor="@color/white"
         android:textStyle="normal"
-        android:textSize="@dimen/_7ssp"
+        android:textSize="@dimen/_10ssp"
         />
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatTextView
@@ -90,7 +87,7 @@
         android:text="@string/expire_date"
         android:textColor="@color/grey2"
         android:textStyle="normal"
-        android:textSize="@dimen/_7ssp"/>
+        android:textSize="@dimen/_8ssp"/>
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -103,7 +100,7 @@
            android:layout_alignEnd="@id/ll_success"
            android:layout_alignParentTop="true"
            android:layout_marginTop="10dp"
-           android:background="#A3A2A2" />
+           android:background="#D8D6D6" />
 
        <androidx.appcompat.widget.LinearLayoutCompat
            android:id="@+id/ll_success"
@@ -128,7 +125,7 @@
                    android:text="@string/_100_success"
                    android:textAllCaps="true"
                    android:textColor="@color/black"
-                   android:textSize="@dimen/_7ssp"
+                   android:textSize="@dimen/_9ssp"
                    android:textStyle="normal" />
 
                <ImageView
@@ -142,7 +139,7 @@
                android:layout_width="1dp"
                android:layout_height="match_parent"
                android:layout_marginHorizontal="20dp"
-               android:background="#A3A2A2" />
+               android:background="#D8D6D6" />
 
            <androidx.appcompat.widget.LinearLayoutCompat
                android:layout_width="wrap_content"
@@ -159,7 +156,7 @@
                    android:text="@string/_100_success"
                    android:textAllCaps="true"
                    android:textColor="@color/black"
-                   android:textSize="@dimen/_7ssp"
+                   android:textSize="@dimen/_9ssp"
                    android:textStyle="normal" />
 
                <ImageView
@@ -174,11 +171,14 @@
        <View
            android:id="@+id/viewBottomSuccess"
            android:layout_width="match_parent"
-           android:layout_height="1dp"
+           android:layout_height="2dp"
            android:layout_below="@id/ll_success"
            android:layout_alignEnd="@id/ll_success"
-           android:background="#A3A2A2"
-           android:visibility="invisible" />
+           android:clipToPadding="false"
+           android:elevation="1dp"
+           android:outlineProvider="bounds"
+           android:translationZ="1dp"
+           android:visibility="visible" />
 
        <ImageView
            android:id="@+id/ivShare"
@@ -186,7 +186,6 @@
            android:layout_height="match_parent"
            android:layout_alignBottom="@id/viewBottomSuccess"
            android:layout_alignParentEnd="true"
-           android:layout_marginBottom="1dp"
            android:scaleType="centerCrop"
            android:src="@mipmap/ic_launcher" />
    </RelativeLayout>
