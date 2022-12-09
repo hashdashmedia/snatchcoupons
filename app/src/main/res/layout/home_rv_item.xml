@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="18dp">
+    android:paddingTop="15dp">
 <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -19,21 +19,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="4dp">
+        android:layout_marginHorizontal="20dp">
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/yellow1"
             android:layout_weight="1"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoPer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
             android:text="60%"
             android:textColor="@color/red1"
             android:textStyle="normal"
-            android:textSize="@dimen/_25ssp"
+            android:textSize="@dimen/_23ssp"
             android:layout_marginHorizontal="10dp"/>
         <View
             android:layout_width="0dp"
@@ -43,18 +43,24 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         android:textAllCaps="true"
         android:text="@string/discount_on_new_arrivals"
         android:textColor="@color/grey1"
         android:textStyle="normal"
-        android:textSize="@dimen/_8ssp"/>
+        android:textSize="@dimen/_8ssp"
+        android:maxLines="2"
+        android:ellipsize="end"/>
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCouponCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dash_rectangle_black"
@@ -64,9 +70,10 @@
         android:text="@string/discount_on_new_arrivals"
         android:textColor="@color/black"
         android:textStyle="normal"
-        android:textSize="@dimen/_10ssp"/>
+        android:textSize="@dimen/_9ssp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvShowCouponCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_red"
@@ -76,10 +83,11 @@
         android:text="@string/show_coupon_code"
         android:textColor="@color/white"
         android:textStyle="normal"
-        android:textSize="@dimen/_10ssp"
+        android:textSize="@dimen/_9ssp"
         />
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvExpDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -90,8 +98,7 @@
         android:textSize="@dimen/_8ssp"/>
    <RelativeLayout
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="5dp">
+       android:layout_height="wrap_content">
 
        <View
            android:id="@+id/viewTopSuccess"
@@ -117,6 +124,7 @@
                android:gravity="center">
 
                <androidx.appcompat.widget.AppCompatTextView
+                   android:id="@+id/tvSuccessOne"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -129,6 +137,7 @@
                    android:textStyle="normal" />
 
                <ImageView
+                   android:id="@+id/ivLike"
                    android:layout_width="14dp"
                    android:layout_height="14dp"
                    android:layout_marginStart="10dp"
@@ -148,6 +157,7 @@
                android:gravity="center">
 
                <androidx.appcompat.widget.AppCompatTextView
+                   android:id="@+id/tvUsedToday"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
@@ -160,6 +170,7 @@
                    android:textStyle="normal" />
 
                <ImageView
+                   android:id="@+id/ivUsedLevel"
                    android:layout_width="14dp"
                    android:layout_height="14dp"
                    android:layout_marginStart="10dp"
