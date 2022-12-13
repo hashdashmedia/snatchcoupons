@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.couponapp.data.model.CouponDataResponseItem
 import com.app.couponapp.databinding.HomeRvItemBinding
+import com.app.couponapp.util.makeGone
 import java.util.*
 
 
-class CouponItemAdapter: ListAdapter<CouponDataResponseItem, CouponItemAdapter.CouponHolder>(DiffUtilCallback()) {
+class CouponItemAdapter(private val onCouponItemClick: (CouponDataResponseItem) -> Unit) : ListAdapter<CouponDataResponseItem, CouponItemAdapter.CouponHolder>(DiffUtilCallback()) {
+
+
 
     class DiffUtilCallback: DiffUtil.ItemCallback<CouponDataResponseItem>() {
         override fun areItemsTheSame(oldItem: CouponDataResponseItem, newItem: CouponDataResponseItem): Boolean {
@@ -37,28 +40,33 @@ class CouponItemAdapter: ListAdapter<CouponDataResponseItem, CouponItemAdapter.C
 
     inner class CouponHolder(private val binding: HomeRvItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.tvShowCouponCode.setOnClickListener {
+                onCouponItemClick(getItem(adapterPosition))
+            }
+        }
         fun bindItem(item: CouponDataResponseItem?) {
             with(binding){
                 item?.apply {
+                    tvTakeExtra.text = acf?.mainAttentionText?:""
                     tvTitle.text = title?.rendered?:""
                     tvUsedToday.text ="USED TODAY ${used?:0}"
-                    tvCouponCode.text = couponCode?:""
+                    tvNoPer.text=acf?.discountValue
+                    tvShowCouponCode.text=acf?.couponDealsDuttonText
+                    tvSuccessOne.text="${acf?.successRate} SUCCESS"
+                    val expTimeDate = (expire?.toLong()?:0)*1000
+                    binding.tvExpDate.text = "Expires: ${DateFormat.format("dd/MM/yyyy",expTimeDate)}"
+                    if(isExpire == true){
+                        binding.tvShowCouponCode.isEnabled=false
+                        binding.tvShowCouponCode.setBackgroundColor(Color.GRAY)
+                    }
+                    if(couponCode.isNullOrEmpty()){
+                        tvCouponCode.makeGone()
+                    }else{
+                        tvCouponCode.text = couponCode.takeLast(3)
+                    }
                 }
             }
-            setExpireDate(item?.expire)
         }
-
-        @SuppressLint("SimpleDateFormat", "SetTextI18n")
-        private fun setExpireDate(expire: String?) {
-          expire.isNullOrEmpty().takeIf { false }.run {
-              val currentTimeDate = Date().time
-              val expTimeDate = (expire?.toLong()?:0)*1000
-              binding.tvExpDate.text = "Expires: ${DateFormat.format("dd/MM/yyyy",expTimeDate)}"
-              if(currentTimeDate > expTimeDate){
-                  binding.tvShowCouponCode.isEnabled=false
-                  binding.tvShowCouponCode.setBackgroundColor(Color.GRAY)
-              }
-          }
-       }
     }
 }

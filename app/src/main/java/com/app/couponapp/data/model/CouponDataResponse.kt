@@ -5,12 +5,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
-/*@Parcelize
-data class CouponDataResponse(
-
-	@field:SerializedName("CouponDataResponseItem")
-	val CouponDataResponseItem: List<CouponDataResponseItem?>? = null
-) : Parcelable*/
 
 @Parcelize
 data class CollectionItem(
@@ -197,8 +191,14 @@ data class CouponDataResponseItem(
 	@field:SerializedName("ctype")
 	val ctype: String? = null,
 
+	@field:SerializedName("acf")
+	val acf: AcfResponse? = null,
+
 	@field:SerializedName("expire")
 	val expire: String? = null,
+
+
+	var isExpire: Boolean? = null,
 
 	@field:SerializedName("coupon-store")
 	val couponStore: List<Int?>? = null,
@@ -208,4 +208,41 @@ data class CouponDataResponseItem(
 
 	@field:SerializedName("status")
 	val status: String? = null
+) : Parcelable
+
+@Parcelize
+data class AcfResponse(
+
+	@field:SerializedName("grab_deal")
+	val grabDeal: String? = null,
+
+	@field:SerializedName("copy_code")
+	val copyCode: String? = null,
+
+	@field:SerializedName("all_deals_button_text")
+	val allDealsButtonText: String? = null,
+
+	@field:SerializedName("bar_code")
+	val barCode: @RawValue Any? = null,
+
+	@field:SerializedName("deal_field_text")
+	val dealFieldText: String? = null,
+
+	@field:SerializedName("discount_value")
+	val discountValue: String? = null,
+
+	@field:SerializedName("deal_or_coupon")
+	val dealOrCoupon: Boolean? = null,
+
+	@field:SerializedName("main_attention_text")
+	val mainAttentionText: String? = null,
+
+	@field:SerializedName("coupon_deals_button_text")
+	val couponDealsDuttonText: String? = null,
+
+	@field:SerializedName("success_rate")
+	val successRate: String? = null,
+
+	@field:SerializedName("shop_now")
+	val shopNow: String? = null
 ) : Parcelable

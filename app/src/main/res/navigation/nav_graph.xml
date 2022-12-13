@@ -14,4 +14,10 @@
         android:label="Option fragment"
         android:name="com.app.couponapp.ui.HomePageFragment"
         tools:layout="@layout/fragment_home_page"/>
+
+    <fragment
+        android:id="@+id/navCouponDetail"
+        android:label="Option fragment"
+        android:name="com.app.couponapp.ui.CouponDetailFragment"
+        tools:layout="@layout/fragment_coupon_detail"/>
 </navigation>

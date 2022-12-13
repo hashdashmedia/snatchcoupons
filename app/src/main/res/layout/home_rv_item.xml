@@ -5,8 +5,9 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="15dp">
+    android:paddingTop="12dp">
 <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/tvTakeExtra"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAllCaps="true"
@@ -19,7 +20,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="-5dp">
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -34,7 +36,8 @@
             android:textColor="@color/red1"
             android:textStyle="normal"
             android:textSize="@dimen/_23ssp"
-            android:layout_marginHorizontal="10dp"/>
+            android:layout_marginHorizontal="10dp"
+            />
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -52,25 +55,28 @@
         android:text="@string/discount_on_new_arrivals"
         android:textColor="@color/grey1"
         android:textStyle="normal"
-        android:textSize="@dimen/_8ssp"
+        android:textSize="@dimen/_9ssp"
         android:maxLines="2"
         android:ellipsize="end"/>
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCouponCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dash_rectangle_black"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="5dp"
-        android:textAllCaps="true"
-        android:text="@string/discount_on_new_arrivals"
-        android:textColor="@color/black"
-        android:textStyle="normal"
-        android:textSize="@dimen/_9ssp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCouponCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-4dp"
+            android:layout_toEndOf="@id/tvShowCouponCode"
+            android:background="@drawable/dash_rectangle_black"
+            android:paddingHorizontal="@dimen/_7sdp"
+            android:paddingVertical="5dp"
+            android:text="qqw"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
+            android:textStyle="normal" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvShowCouponCode"
@@ -85,12 +91,12 @@
         android:textStyle="normal"
         android:textSize="@dimen/_9ssp"
         />
-    </FrameLayout>
+    </RelativeLayout>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvExpDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/_3sdp"
         android:textAllCaps="false"
         android:text="@string/expire_date"
         android:textColor="@color/grey2"
@@ -106,7 +112,7 @@
            android:layout_height="1dp"
            android:layout_alignEnd="@id/ll_success"
            android:layout_alignParentTop="true"
-           android:layout_marginTop="10dp"
+           android:layout_marginTop="@dimen/_7sdp"
            android:background="#D8D6D6" />
 
        <androidx.appcompat.widget.LinearLayoutCompat
@@ -128,7 +134,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
-                   android:layout_marginVertical="7dp"
+                   android:layout_marginVertical="3dp"
                    android:gravity="center_vertical"
                    android:text="@string/_100_success"
                    android:textAllCaps="true"
@@ -138,10 +144,10 @@
 
                <ImageView
                    android:id="@+id/ivLike"
-                   android:layout_width="14dp"
-                   android:layout_height="14dp"
+                   android:layout_width="@dimen/_12sdp"
+                   android:layout_height="@dimen/_12sdp"
                    android:layout_marginStart="10dp"
-                   android:src="@mipmap/ic_launcher" />
+                   android:src="@drawable/ic_like_green" />
            </androidx.appcompat.widget.LinearLayoutCompat>
 
            <View
@@ -161,20 +167,19 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_vertical"
-                   android:layout_marginVertical="7dp"
+                   android:layout_marginVertical="3dp"
                    android:gravity="center_vertical"
                    android:text="@string/_100_success"
                    android:textAllCaps="true"
                    android:textColor="@color/black"
                    android:textSize="@dimen/_9ssp"
                    android:textStyle="normal" />
-
                <ImageView
                    android:id="@+id/ivUsedLevel"
-                   android:layout_width="14dp"
-                   android:layout_height="14dp"
+                   android:layout_width="@dimen/_12sdp"
+                   android:layout_height="@dimen/_12sdp"
                    android:layout_marginStart="10dp"
-                   android:src="@mipmap/ic_launcher" />
+                   android:src="@drawable/ic_used_level" />
            </androidx.appcompat.widget.LinearLayoutCompat>
 
        </androidx.appcompat.widget.LinearLayoutCompat>
@@ -193,11 +198,9 @@
 
        <ImageView
            android:id="@+id/ivShare"
-           android:layout_width="30dp"
-           android:layout_height="match_parent"
-           android:layout_alignBottom="@id/viewBottomSuccess"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
            android:layout_alignParentEnd="true"
-           android:scaleType="centerCrop"
-           android:src="@mipmap/ic_launcher" />
+           android:src="@drawable/share_red_bg_icon" />
    </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

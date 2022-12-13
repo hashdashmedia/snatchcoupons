@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoPer"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:paddingVertical="@dimen/_3sdp"
+        android:paddingHorizontal="@dimen/_3sdp"
+        android:text="60%"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/white"
+        android:background="@drawable/per_red_rectangle_backg"
+        android:gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+         android:id="@+id/tvCouponName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Michael Coupons"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:paddingEnd="@dimen/_40sdp"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Flat 60% on Apparels. For Selected Iteams only. Happy Shopping"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/grey2"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCouponCode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="JRVJHYB"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:gravity="center"
+        android:background="@drawable/dash_rectangle_black"
+        android:layout_weight="1"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCopyCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Copy code"
+                android:textSize="@dimen/_7ssp"
+                android:textColor="@color/red1"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:gravity="center"
+                android:background="@drawable/stroke_round_rectangle_red"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvShopNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="shop now"
+                android:textSize="@dimen/_7ssp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:gravity="center"
+                android:background="@drawable/solid_round_rectangle_red"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBarcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:src="@drawable/barcode"/>
+    <View
+        android:id="@+id/viewTopSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D8D6D6"
+        android:layout_marginTop="@dimen/_10sdp"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewTopSuccess"
+        android:layout_toStartOf="@id/ivShare"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSuccessOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="3dp"
+                android:gravity="center_vertical"
+                android:text="@string/_100_success"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/ivLike"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_like_green" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:background="#D8D6D6" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUsedToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="3dp"
+                android:gravity="center_vertical"
+                android:text="@string/_100_success"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                android:textStyle="normal" />
+            <ImageView
+                android:id="@+id/ivUsedLevel"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_used_level" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <View
+        android:id="@+id/viewBottomSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/ll_success"
+        android:layout_alignEnd="@id/ll_success"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:outlineProvider="bounds"
+        android:translationZ="1dp"
+        android:visibility="visible" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDescTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discount valid on regular priced items:"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/grey1"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvShowMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ Show more"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/red1"
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_8sdp" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGotoSite"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sdp"
+        android:textAllCaps="true"
+        android:text="Go to michaels site"
+        android:textSize="@dimen/_9ssp"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:drawablePadding="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/solid_round_rectangle_red"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue1"
+        android:paddingVertical="@dimen/_4sdp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVerified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verified"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/white"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/verifed_green_icon"
+            android:layout_toEndOf="@id/tvVerified"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_10sdp"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="@dimen/_2sdp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Valid till Sep 30 2021"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
