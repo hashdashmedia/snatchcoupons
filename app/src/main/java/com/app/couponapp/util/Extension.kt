@@ -38,6 +38,8 @@ fun View.makeGone(){
 }
 fun View.isVisible()=visibility  == View.VISIBLE
 
+fun Context.showMessage(msg:String){ Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()}
+
 inline fun <T> Flow<T>.launchAndCollectIn(
     owner: LifecycleOwner,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,

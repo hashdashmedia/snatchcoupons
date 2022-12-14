@@ -42,7 +42,9 @@ class CouponItemAdapter(private val onCouponItemClick: (CouponDataResponseItem) 
 
         init {
             binding.tvShowCouponCode.setOnClickListener {
-                onCouponItemClick(getItem(adapterPosition))
+                if(binding.tvShowCouponCode.text.toString().contains("Coupon",ignoreCase = true)){
+                    onCouponItemClick(getItem(adapterPosition))
+                }
             }
         }
         fun bindItem(item: CouponDataResponseItem?) {

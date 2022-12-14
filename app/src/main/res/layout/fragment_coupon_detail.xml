@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,12 +13,12 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_10sdp">
+        android:layout_marginHorizontal="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_14sdp">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoPer"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_24sdp"
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_34sdp"
         android:paddingVertical="@dimen/_3sdp"
         android:paddingHorizontal="@dimen/_3sdp"
         android:text="60%"
@@ -25,13 +29,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
          android:id="@+id/tvCouponName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Michael Coupons"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_14ssp"
         android:textColor="@color/black"
         android:gravity="center"
         android:paddingEnd="@dimen/_40sdp"
+            android:paddingStart="@dimen/_15sdp"
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.AppCompatTextView
@@ -42,14 +47,16 @@
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/grey2"
         android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_18sdp"
         android:maxLines="2"
         android:ellipsize="end"
         />
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp">
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        >
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCouponCode"
         android:layout_width="match_parent"
@@ -61,8 +68,8 @@
         android:paddingVertical="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_20sdp"
         android:gravity="center"
-        android:background="@drawable/dash_rectangle_black"
-        android:layout_weight="1"/>
+        android:background="@drawable/dash_rectangle_grey_solid"
+        android:layout_weight="1" />
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +82,7 @@
                 android:text="Copy code"
                 android:textSize="@dimen/_7ssp"
                 android:textColor="@color/red1"
-                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_11sdp"
                 android:paddingVertical="@dimen/_4sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:gravity="center"
@@ -88,7 +95,7 @@
                 android:text="shop now"
                 android:textSize="@dimen/_7ssp"
                 android:textColor="@color/white"
-                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_11sdp"
                 android:paddingVertical="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
@@ -97,11 +104,17 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cessior"
+        android:layout_marginTop="-14dp"
+        android:layout_marginStart="@dimen/_11sdp"/>
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivBarcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_18sdp"
         android:src="@drawable/barcode"/>
     <View
         android:id="@+id/viewTopSuccess"
@@ -205,6 +218,7 @@
         android:text="Discount valid on regular priced items:"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/grey1"
+        android:visibility="gone"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_8sdp"
         />
@@ -236,7 +250,8 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/_18sdp"/>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -274,6 +289,7 @@
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/white"
             android:gravity="center"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>
