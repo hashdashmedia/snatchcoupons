@@ -82,7 +82,7 @@
         android:id="@+id/tvShowCouponCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_red"
+        android:background="@color/red1"
         android:paddingHorizontal="12dp"
         android:paddingVertical="5dp"
         android:textAllCaps="true"

@@ -1,31 +1,28 @@
 package com.app.couponapp.ui
 
 import android.annotation.SuppressLint
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import com.app.couponapp.data.model.CouponDataResponseItem
-import com.app.couponapp.databinding.FragmentCouponDetailBinding
+import com.app.couponapp.databinding.FragmentDealDetailBinding
 import com.app.couponapp.util.makeGone
 import com.app.couponapp.util.makeVisible
 import com.app.couponapp.util.showMessage
 import com.bumptech.glide.Glide
 
 
-class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
-    private var couponData: CouponDataResponseItem? = null
+class DealDetailFragment : BaseFragment<FragmentDealDetailBinding>() {
+    private var dealData: CouponDataResponseItem? = null
     private var tvDescMaxLinesCount = 0
-    override fun getViewBinding() = FragmentCouponDetailBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentDealDetailBinding.inflate(layoutInflater)
 
     override fun observe() {}
 
     override fun init() {
         arguments?.let {
-            couponData = it.getParcelable("couponData")
+            dealData = it.getParcelable("dealData")
         }
         setClickListeners()
         setScreenData()
@@ -43,18 +40,11 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
                 }
         }
 
-        dataBinding.tvCopyCode.setOnClickListener {
-            requireContext().showMessage("COUPON CODE COPIED! ")
-            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("copiedText", dataBinding.tvCouponCode.text)
-            clipboard.setPrimaryClip(clip)
-            openWebView(couponData?.couponAffiliate?:"")
-        }
-        dataBinding.tvShopNow.setOnClickListener {
-            openWebView(couponData?.couponAffiliate?:"")
+        dataBinding.tvGrabDeal.setOnClickListener {
+            openWebView(dealData?.couponAffiliate?:"")
         }
         dataBinding.tvGotoSite.setOnClickListener {
-            openWebView(couponData?.couponAffiliate?:"")
+            openWebView(dealData?.couponAffiliate?:"")
         }
     }
 
@@ -67,12 +57,16 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
     @SuppressLint("SetTextI18n")
     private fun setScreenData() {
         with(dataBinding) {
-            couponData?.run {
+            dealData?.run {
                 tvNoPer.text = acf?.discountValue ?: ""
                 tvTitle.text = title?.rendered ?: ""
-                tvCouponCode.text = couponCode ?: ""
-                tvCopyCode.text = acf?.copyCode ?: ""
-                tvShopNow.text = acf?.shopNow ?: ""
+                tvGrabDeal.text=acf?.grabDeal?:""
+                tvDealField.text=
+                if(acf?.dealFieldText.isNullOrEmpty())
+                    "FLAT ${acf?.discountValue} OFF"
+                else
+                    acf?.dealFieldText?:""
+
                 Glide.with(requireContext()).load(acf?.barCode ?: "").into(ivBarcode)
                 tvSuccessOne.text = "${acf?.successRate} SUCCESS"
                 tvUsedToday.text = "USED TODAY $used"

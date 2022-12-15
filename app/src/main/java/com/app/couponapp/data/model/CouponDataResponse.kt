@@ -223,7 +223,7 @@ data class AcfResponse(
 	val allDealsButtonText: String? = null,
 
 	@field:SerializedName("bar_code")
-	val barCode: @RawValue Any? = null,
+	val barCode: @RawValue String? = null,
 
 	@field:SerializedName("deal_field_text")
 	val dealFieldText: String? = null,
@@ -232,7 +232,7 @@ data class AcfResponse(
 	val discountValue: String? = null,
 
 	@field:SerializedName("deal_or_coupon")
-	val dealOrCoupon: Boolean? = null,
+	val dealOrCoupon: String? = null,
 
 	@field:SerializedName("main_attention_text")
 	val mainAttentionText: String? = null,

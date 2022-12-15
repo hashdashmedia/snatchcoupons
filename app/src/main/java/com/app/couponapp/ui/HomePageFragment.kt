@@ -35,7 +35,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         }
     }
    private val onCouponItemClick:(CouponDataResponseItem)->Unit = {data->
-       findNavController().navigate(R.id.navCouponDetail, bundleOf("couponData" to data))
+       if(data.acf?.dealOrCoupon.equals("coupon",ignoreCase = true)){
+           findNavController().navigate(R.id.navCouponDetail, bundleOf("couponData" to data))
+       }else if(data.acf?.dealOrCoupon.equals("deal",ignoreCase = true)){
+           findNavController().navigate(R.id.navDealDetail, bundleOf("dealData" to data))
+       }
    }
     private fun filterList(list: List<CouponDataResponseItem>?): List<CouponDataResponseItem> ?{
         val currentTimeDate = Date().time
