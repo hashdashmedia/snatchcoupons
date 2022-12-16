@@ -43,8 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.nav_graph_coupon->{
-                    binding.bottomNav.selectedItemId=R.id.navHomePage
-                   // navController.navigate(R.id.navHomePage)
+
                 }
                 else -> {}
             }
