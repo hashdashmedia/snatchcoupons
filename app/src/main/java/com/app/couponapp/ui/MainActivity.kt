@@ -3,6 +3,7 @@ package com.app.couponapp.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
@@ -35,9 +36,20 @@ class MainActivity : AppCompatActivity() {
            .build()*/
        setupActionBarWithNavController(this, navController, mAppBarConfiguration)
        setupWithNavController(binding.navigationView, navController)
+       setupWithNavController(binding.bottomNav, navController)
 
    }
     private fun setDrawerListener(){
+        binding.bottomNav.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.nav_graph_coupon->{
+                    binding.bottomNav.selectedItemId=R.id.navHomePage
+                   // navController.navigate(R.id.navHomePage)
+                }
+                else -> {}
+            }
+            false
+        }
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when(destination.id){
                 R.id.navHomePage ->{
