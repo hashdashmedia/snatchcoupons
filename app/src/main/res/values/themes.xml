@@ -10,14 +10,19 @@
           <item name="colorSecondaryVariant">@color/teal_700</item>
           <item name="colorOnSecondary">@color/black</item>-->
           <!-- Status bar color. -->
-          <item name="android:statusBarColor" >@color/red1</item>
+          <item name="android:statusBarColor" >@android:color/transparent</item>
           <!-- Customize your theme here. -->
           <!-- This disables the black preview screen -->
+        <item name="android:windowFullscreen">true</item>
           <item name="android:windowDisablePreview">true</item>
 
     </style>
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
+    <style name="BottomNavigationViewInActive" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 </resources>

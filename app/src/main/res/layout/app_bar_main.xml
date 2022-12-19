@@ -2,29 +2,35 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:gravity="center">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/red2">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="#F44336"
-            app:title="">
+            android:layout_height="?actionBarSize">
             <TextView
                 android:id="@+id/tvToolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coupon App"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                android:layout_gravity="center"
-                />
+                android:layout_gravity="center"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivToolbarShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_grey"
+                android:tint="@color/white"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:visibility="visible"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

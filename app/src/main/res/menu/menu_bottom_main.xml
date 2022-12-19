@@ -6,11 +6,11 @@
         android:icon="@drawable/ic_home_grey"
         android:title="Home" />
     <item
-        android:id="@+id/nav_graph_coupon"
+        android:id="@+id/navCoupon"
         android:icon="@drawable/ic_coupon_tab"
         android:title="Coupons" />
     <item
-        android:id="@+id/nav_graph_deal"
+        android:id="@+id/navDeal"
         android:icon="@drawable/ic_deal_tab"
         android:title="Deals" />
     <item

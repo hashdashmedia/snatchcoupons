@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
@@ -201,6 +202,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentEnd="true"
-           android:src="@drawable/share_red_bg_icon" />
+           android:src="@drawable/share_red_bg_icon"
+           />
    </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

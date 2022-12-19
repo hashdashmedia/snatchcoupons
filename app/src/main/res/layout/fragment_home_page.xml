@@ -13,7 +13,10 @@
        android:orientation="vertical"
        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
        tools:itemCount="10"
-       tools:listitem="@layout/home_rv_item" />
+       tools:listitem="@layout/home_rv_item"
+       android:clipToPadding="false"
+       android:paddingBottom="@dimen/_16sdp"/>
+
    <com.google.android.material.progressindicator.CircularProgressIndicator
        android:id="@+id/progress_circular"
        android:layout_width="wrap_content"

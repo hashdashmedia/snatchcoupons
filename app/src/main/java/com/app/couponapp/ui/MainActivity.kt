@@ -1,7 +1,9 @@
 package com.app.couponapp.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,54 +14,61 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.R
 import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.util.hideStatusActionBar
+import com.app.couponapp.util.makeGone
+import com.app.couponapp.util.makeVisible
+import com.app.couponapp.util.showMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navController:NavController
-    private lateinit var mAppBarConfiguration:AppBarConfiguration
+    private lateinit var navController: NavController
+    private lateinit var mAppBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        hideStatusActionBar()
+        //hideStatusActionBar()
         setUpDrawer()
         setDrawerListener()
     }
-   private fun setUpDrawer(){
-       setSupportActionBar(binding.contentMainLayout.appBarLayout.toolbar)
-       navController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
-      // mAppBarConfiguration = AppBarConfiguration.Builder(navController.graph)
-       mAppBarConfiguration = AppBarConfiguration(setOf(R.id.navHomePage),binding.drawerLayout)
-           /*.setOpenableLayout(binding.drawerLayout)
+
+    private fun setUpDrawer() {
+        setSupportActionBar(binding.contentMainLayout.appBarLayout.toolbar)
+        navController =
+            (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+        // mAppBarConfiguration = AppBarConfiguration.Builder(navController.graph)
+        mAppBarConfiguration = AppBarConfiguration(
+            setOf(R.id.navHomePage, R.id.navCoupon, R.id.navDeal),
+            binding.drawerLayoutRoot
+        )
+        /*.setOpenableLayout(binding.drawerLayout)
            .build()*/
-       setupActionBarWithNavController(this, navController, mAppBarConfiguration)
-       setupWithNavController(binding.navigationView, navController)
-       setupWithNavController(binding.bottomNav, navController)
+        setupActionBarWithNavController(this, navController, mAppBarConfiguration)
+        setupWithNavController(binding.navigationView, navController)
+        setupWithNavController(binding.bottomNav, navController)
+        binding.navigationView.bringToFront()
+    }
 
-   }
-    private fun setDrawerListener(){
-        binding.bottomNav.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_graph_coupon->{
+    private fun setDrawerListener() {
 
-                }
-                else -> {}
-            }
-            false
+        binding.rootDrawerLayout.llHome.setOnClickListener {
+            binding.bottomNav.selectedItemId=R.id.navHomePage
+            binding.drawerLayoutRoot.close()
         }
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            when(destination.id){
-                R.id.navHomePage ->{
 
-                }else->{}
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.navHomePage -> {
+                    binding.contentMainLayout.appBarLayout.ivToolbarShare.makeGone()
+                }
+                else -> {
+                    binding.contentMainLayout.appBarLayout.ivToolbarShare.makeVisible()
+                }
             }
             supportActionBar?.title = ""
+            binding.contentMainLayout.appBarLayout.tvToolbar.text = destination.label.toString()
         }
-        /*binding.tvOptionOne.setOnClickListener {
-            navController.navigate(R.id.navHomePage)
-        }*/
     }
 
 
@@ -68,7 +77,18 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp())
     }
 
+    fun getCurrentTab(): CharSequence =
+        binding.bottomNav.menu.findItem(binding.bottomNav.selectedItemId).title
+
+    fun hideShowBottomNav(status: String) {
+        when (status) {
+            "show" -> binding.bottomNav.makeVisible()
+            "hide" -> binding.bottomNav.makeGone()
+        }
+    }
+
     override fun onNavigateUp(): Boolean {
         return super.onNavigateUp()
     }
+
 }

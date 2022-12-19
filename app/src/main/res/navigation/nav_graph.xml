@@ -11,18 +11,28 @@
         tools:layout="@layout/splash_fragment"/>
     <fragment
         android:id="@+id/navHomePage"
-        android:label="Option fragment"
+        android:label="MICHAEL’S COUPONS"
         android:name="com.app.couponapp.ui.HomePageFragment"
         tools:layout="@layout/fragment_home_page"/>
 
     <fragment
         android:id="@+id/navCouponDetail"
-        android:label="Option fragment"
+        android:label="Coupons"
         android:name="com.app.couponapp.ui.CouponDetailFragment"
         tools:layout="@layout/fragment_coupon_detail"/>
     <fragment
         android:id="@+id/navDealDetail"
-        android:label="Option fragment"
+        android:label="Deal"
         android:name="com.app.couponapp.ui.DealDetailFragment"
         tools:layout="@layout/fragment_deal_detail"/>
+    <fragment
+        android:id="@+id/navDeal"
+        android:label="MICHAEL’S COUPONS"
+        android:name="com.app.couponapp.ui.HomePageFragment"
+        tools:layout="@layout/fragment_home_page"/>
+    <fragment
+        android:id="@+id/navCoupon"
+        android:label="MICHAEL’S COUPONS"
+        android:name="com.app.couponapp.ui.HomePageFragment"
+        tools:layout="@layout/fragment_home_page"/>
 </navigation>

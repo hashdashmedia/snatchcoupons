@@ -26,7 +26,7 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>() {
     override fun favOperation(view: View) {}
     override fun removeBackArrowDrawer()=true
     private fun showOrHideSplash() {
-        var mHandler = Handler(Looper.getMainLooper())
+        val mHandler = Handler(Looper.getMainLooper())
             mHandler.postDelayed({
                 val navOptions =  NavOptions.Builder().setPopUpTo(R.id.nav_splash, inclusive = true).build()
                findNavController().navigate(R.id.navHomePage,null,navOptions)

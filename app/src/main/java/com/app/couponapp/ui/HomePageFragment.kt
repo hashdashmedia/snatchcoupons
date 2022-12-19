@@ -15,7 +15,9 @@ import java.util.*
 
 @AndroidEntryPoint
 class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
-    private val couponItemAdapter by lazy { CouponItemAdapter(onCouponItemClick) }
+    private val couponItemAdapter by lazy {
+        CouponItemAdapter(onCouponItemClick, (activity as MainActivity).getCurrentTab() as String)
+    }
     private val couponViewModel by viewModels<CouponViewModel>()
     override fun getViewBinding()=FragmentHomePageBinding.inflate(layoutInflater)
     override fun observe() {
@@ -56,6 +58,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     }
 
     override fun init() {
+        (activity as MainActivity).hideShowBottomNav("show")
         setCouponAdapter()
         getCouponsListing()
     }
