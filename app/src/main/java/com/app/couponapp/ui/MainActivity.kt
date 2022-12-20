@@ -1,5 +1,6 @@
 package com.app.couponapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.app.couponapp.BuildConfig
 import com.app.couponapp.R
 import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.util.hideStatusActionBar
@@ -31,6 +33,18 @@ class MainActivity : AppCompatActivity() {
         //hideStatusActionBar()
         setUpDrawer()
         setDrawerListener()
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding.contentMainLayout.appBarLayout.ivToolbarShare.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(
+                Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
+            intent.type = "text/plain"
+            startActivity(intent)
+        }
     }
 
     private fun setUpDrawer() {

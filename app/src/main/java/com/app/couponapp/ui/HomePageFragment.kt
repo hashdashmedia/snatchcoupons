@@ -1,9 +1,11 @@
 package com.app.couponapp.ui
 
+import android.content.Intent
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.app.couponapp.BuildConfig
 import com.app.couponapp.R
 import com.app.couponapp.adapter.CouponItemAdapter
 import com.app.couponapp.data.model.CouponDataResponseItem
@@ -36,8 +38,15 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
         }
     }
-   private val onCouponItemClick:(CouponDataResponseItem)->Unit = {data->
-       if(data.acf?.dealOrCoupon.equals("coupon",ignoreCase = true)){
+   private val onCouponItemClick:(CouponDataResponseItem,Boolean)->Unit = {data,isShare->
+       if(isShare){
+           val intent = Intent()
+           intent.action = Intent.ACTION_SEND
+           intent.putExtra(
+               Intent.EXTRA_TEXT,"${data.title?.rendered}\nhttps://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
+           intent.type = "text/plain"
+           startActivity(intent)
+       }else if(data.acf?.dealOrCoupon.equals("coupon",ignoreCase = true)){
            findNavController().navigate(R.id.navCouponDetail, bundleOf("couponData" to data))
        }else if(data.acf?.dealOrCoupon.equals("deal",ignoreCase = true)){
            findNavController().navigate(R.id.navDealDetail, bundleOf("dealData" to data))

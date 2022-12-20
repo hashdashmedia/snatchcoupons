@@ -16,7 +16,7 @@ import java.util.*
 
 
 class CouponItemAdapter(
-    private val onCouponItemClick: (CouponDataResponseItem) -> Unit,
+    private val onCouponItemClick: (CouponDataResponseItem,Boolean) -> Unit,
     private val currentTab: String
 ) : ListAdapter<CouponDataResponseItem, CouponItemAdapter.CouponHolder>(DiffUtilCallback()) {
 
@@ -46,7 +46,10 @@ class CouponItemAdapter(
 
         init {
             binding.tvShowCouponCode.setOnClickListener {
-                    onCouponItemClick(getItem(adapterPosition))
+                    onCouponItemClick(getItem(adapterPosition),false)
+            }
+            binding.ivShare.setOnClickListener {
+                    onCouponItemClick(getItem(adapterPosition),true)
             }
         }
 

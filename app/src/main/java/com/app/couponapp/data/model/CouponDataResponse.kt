@@ -207,7 +207,9 @@ data class CouponDataResponseItem(
 	val guid: Guid? = null,
 
 	@field:SerializedName("status")
-	val status: String? = null
+	val status: String? = null,
+
+	val itemClick: String? = null
 ) : Parcelable
 
 @Parcelize

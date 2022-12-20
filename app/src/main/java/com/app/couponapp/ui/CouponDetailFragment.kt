@@ -59,9 +59,14 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
     }
 
     private fun openWebView(url:String){
-        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        val chooser = Intent.createChooser(sendIntent, "Choose Your Browser")
-        startActivity(chooser)
+        val launchIntent=requireContext().packageManager.getLaunchIntentForPackage("com.aries.michaels")
+        launchIntent?.let {
+            startActivity(it)
+        }?: run{
+            val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            val chooser = Intent.createChooser(sendIntent, "Choose Your Browser")
+            startActivity(chooser)
+        }
     }
 
     @SuppressLint("SetTextI18n")

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.couponapp">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <queries>
+    <package android:name="com.aries.michaels" />
+    </queries>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
