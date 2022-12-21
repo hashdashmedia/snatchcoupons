@@ -9,7 +9,6 @@ import com.app.couponapp.data.model.CouponDataResponseItem
 import com.app.couponapp.databinding.FragmentDealDetailBinding
 import com.app.couponapp.util.makeGone
 import com.app.couponapp.util.makeVisible
-import com.app.couponapp.util.showMessage
 import com.bumptech.glide.Glide
 
 

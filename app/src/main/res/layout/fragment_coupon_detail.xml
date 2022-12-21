@@ -17,12 +17,12 @@
         android:layout_marginTop="@dimen/_14sdp">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoPer"
-        android:layout_width="@dimen/_48sdp"
-        android:layout_height="@dimen/_34sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_44sdp"
         android:paddingVertical="@dimen/_3sdp"
         android:paddingHorizontal="@dimen/_3sdp"
         android:text="60%"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_22ssp"
         android:textColor="@color/white"
         android:background="@drawable/per_red_rectangle_backg"
         android:gravity="center"/>
@@ -31,8 +31,9 @@
          android:id="@+id/tvCouponName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+            android:textStyle="bold"
         android:text="Michael Coupons"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_15ssp"
         android:textColor="@color/black"
         android:gravity="center"
         android:paddingEnd="@dimen/_40sdp"
@@ -44,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Flat 60% on Apparels. For Selected Iteams only. Happy Shopping"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_13ssp"
         android:textColor="@color/grey2"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginHorizontal="@dimen/_18sdp"
@@ -60,30 +61,31 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCouponCode"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="JRVJHYB"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_16ssp"
         android:textColor="@color/black"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:paddingVertical="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_14sdp"
         android:paddingHorizontal="@dimen/_20sdp"
         android:gravity="center"
         android:background="@drawable/dash_rectangle_grey_solid"
         android:layout_weight="1" />
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCopyCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
                 android:text="Copy code"
-                android:textSize="@dimen/_7ssp"
+                android:textSize="@dimen/_9ssp"
                 android:textColor="@color/red1"
                 android:paddingHorizontal="@dimen/_11sdp"
-                android:paddingVertical="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:gravity="center"
                 android:background="@drawable/stroke_round_rectangle_red"/>
@@ -93,14 +95,14 @@
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
                 android:text="shop now"
-                android:textSize="@dimen/_7ssp"
+                android:textSize="@dimen/_9ssp"
                 android:textColor="@color/white"
                 android:paddingHorizontal="@dimen/_11sdp"
-                android:paddingVertical="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:gravity="center"
-                android:background="@drawable/solid_round_rectangle_red"/>
+                android:background="@drawable/solid_round_rectangle_red" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.AppCompatImageView

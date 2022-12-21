@@ -129,7 +129,9 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             />
-    </androidx.appcompat.widget.LinearLayoutCompat><androidx.appcompat.widget.LinearLayoutCompat
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llRateApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -151,6 +153,7 @@
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llShare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

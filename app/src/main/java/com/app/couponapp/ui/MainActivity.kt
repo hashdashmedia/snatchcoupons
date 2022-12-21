@@ -15,10 +15,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.BuildConfig
 import com.app.couponapp.R
 import com.app.couponapp.databinding.ActivityMainBinding
-import com.app.couponapp.util.hideStatusActionBar
-import com.app.couponapp.util.makeGone
-import com.app.couponapp.util.makeVisible
-import com.app.couponapp.util.showMessage
+import com.app.couponapp.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,12 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setClickListeners() {
         binding.contentMainLayout.appBarLayout.ivToolbarShare.setOnClickListener {
-            val intent = Intent()
-            intent.action = Intent.ACTION_SEND
-            intent.putExtra(
-                Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
-            intent.type = "text/plain"
-            startActivity(intent)
+          shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
         }
     }
 
@@ -70,7 +62,12 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNav.selectedItemId=R.id.navHomePage
             binding.drawerLayoutRoot.close()
         }
-
+        binding.rootDrawerLayout.llShare.setOnClickListener {
+            shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
+        }
+        binding.rootDrawerLayout.llRateApp.setOnClickListener {
+            openPlayStore("market://details?id=${BuildConfig.APPLICATION_ID}")
+        }
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.navHomePage -> {

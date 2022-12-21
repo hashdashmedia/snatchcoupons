@@ -1,6 +1,8 @@
 package com.app.couponapp.util
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.view.WindowInsets
@@ -11,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.app.couponapp.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -25,6 +28,25 @@ fun AppCompatActivity.hideStatusActionBar(){
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+    }
+}
+fun Context.shareApp(data:String){
+    val intent = Intent()
+    intent.action = Intent.ACTION_SEND
+    intent.putExtra(
+        Intent.EXTRA_TEXT,data)
+    intent.type = "text/plain"
+    startActivity(intent)
+}
+fun Context.openPlayStore(url: String) {
+    val playIntent: Intent = Intent().apply {
+        action = Intent.ACTION_VIEW
+        data = Uri.parse(url)
+    }
+    try {
+        startActivity(playIntent)
+    } catch (e: Exception) {
+        // handle the exception
     }
 }
 fun Context.showToast(message:String?=null){
