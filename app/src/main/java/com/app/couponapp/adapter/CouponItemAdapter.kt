@@ -45,7 +45,7 @@ class CouponItemAdapter(
     inner class CouponHolder(private val binding: HomeRvItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.tvShowCouponCode.setOnClickListener {
+            binding.root.setOnClickListener {
                     onCouponItemClick(getItem(adapterPosition),false)
             }
             binding.ivShare.setOnClickListener {

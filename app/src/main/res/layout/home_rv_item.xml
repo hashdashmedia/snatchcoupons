@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="12dp">
+    android:paddingTop="9dp">
 <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/tvTakeExtra"
     android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="-5dp">
+        android:layout_marginTop="-2dp">
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
@@ -54,9 +54,9 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:textAllCaps="true"
         android:text="@string/discount_on_new_arrivals"
-        android:textColor="@color/grey1"
+        android:textColor="@color/black"
         android:textStyle="normal"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_12ssp"
         android:maxLines="2"
         android:ellipsize="end"/>
     <RelativeLayout
@@ -72,7 +72,7 @@
             android:layout_toEndOf="@id/tvShowCouponCode"
             android:background="@drawable/dash_rectangle_black"
             android:paddingHorizontal="@dimen/_7sdp"
-            android:paddingVertical="4dp"
+            android:paddingVertical="5dp"
             android:text="qqw"
             android:textAllCaps="true"
             android:textColor="@color/black"
@@ -90,8 +90,7 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/_11ssp"
-            android:textStyle="normal"
-            />
+            android:textStyle="normal" />
     </RelativeLayout>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvExpDate"
@@ -113,7 +112,7 @@
            android:layout_height="1dp"
            android:layout_alignEnd="@id/ll_success"
            android:layout_alignParentTop="true"
-           android:layout_marginTop="@dimen/_7sdp"
+           android:layout_marginTop="@dimen/_10sdp"
            android:background="@color/grey3" />
 
        <androidx.appcompat.widget.LinearLayoutCompat
@@ -192,14 +191,14 @@
            android:layout_height="1dp"
            android:layout_below="@id/ll_success"
            android:layout_alignEnd="@id/ll_success"
-           android:visibility="visible"
-           android:background="@color/grey3"/>
+           android:background="@color/grey3"
+           android:visibility="visible" />
+
        <ImageView
            android:id="@+id/ivShare"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentEnd="true"
-           android:src="@drawable/share_red_bg_icon"
-           />
+           android:src="@drawable/share_red_bg_icon" />
    </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

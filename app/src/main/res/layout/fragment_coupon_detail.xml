@@ -17,12 +17,12 @@
         android:layout_marginTop="@dimen/_14sdp">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoPer"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_44sdp"
+        android:layout_width="@dimen/_59sdp"
+        android:layout_height="@dimen/_43sdp"
         android:paddingVertical="@dimen/_3sdp"
         android:paddingHorizontal="@dimen/_3sdp"
         android:text="60%"
-        android:textSize="@dimen/_22ssp"
+        android:textSize="@dimen/_21ssp"
         android:textColor="@color/white"
         android:background="@drawable/per_red_rectangle_backg"
         android:gravity="center"/>
@@ -30,7 +30,7 @@
         <androidx.appcompat.widget.AppCompatTextView
          android:id="@+id/tvCouponName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
             android:textStyle="bold"
         android:text="Michael Coupons"
         android:textSize="@dimen/_15ssp"

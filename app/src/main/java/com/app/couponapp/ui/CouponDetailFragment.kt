@@ -83,7 +83,9 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
                 tvUsedToday.text = "USED TODAY $used"
                 tvDescription.text = HtmlCompat.fromHtml(content?.rendered ?: "", FROM_HTML_MODE_COMPACT)
                 tvDescription.makeVisible()
-                tvDescMaxLinesCount = if(tvDescription.text.isNullOrEmpty()) 0 else tvDescription.maxLines
+                tvDescription.post {
+                    tvDescMaxLinesCount = if(tvDescription.text.isNullOrEmpty()) 0 else tvDescription.maxLines
+                }
                 if (tvDescMaxLinesCount > 3) {
                     tvShowMore.text = "+ Show more"
                     tvDescription.maxLines = 3
