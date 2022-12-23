@@ -3,6 +3,7 @@ package com.app.couponapp.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -15,6 +16,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.BuildConfig
 import com.app.couponapp.R
 import com.app.couponapp.databinding.ActivityMainBinding
+import com.app.couponapp.databinding.SortItemLayoutBinding
 import com.app.couponapp.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -80,6 +82,29 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.title = ""
             binding.contentMainLayout.appBarLayout.tvToolbar.text = destination.label.toString()
         }
+      binding.bottomNav.setOnItemSelectedListener {
+          when(it.itemId){
+              R.id.nav_graph_sort->{
+                  customAlertDialog(R.style.CustomAlertDialog
+                      ,SortItemLayoutBinding.inflate(layoutInflater)){binding,dialog->
+                      binding.tvCancel.setOnClickListener {
+                          dialog.dismiss()
+                      }
+                      binding.tvOk.setOnClickListener {
+                          dialog.dismiss()
+                          when(binding.rgFilter.checkedRadioButtonId){
+                             R.id.rbDateFilter->{showMessage("rbDate")}
+                             R.id.rbAmountFilter->{showMessage("rbAmount")}
+                          }
+                      }
+                      dialog.show()
+                  }
+                  true
+              }
+              else -> {true}
+
+          }
+      }
     }
 
 

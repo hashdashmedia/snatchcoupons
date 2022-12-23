@@ -1,5 +1,6 @@
 package com.app.couponapp.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -8,12 +9,16 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.StyleRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.viewbinding.ViewBinding
 import com.app.couponapp.BuildConfig
+import com.app.couponapp.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -72,4 +77,18 @@ inline fun <T> Flow<T>.launchAndCollectIn(
             action(it)
         }
     }
+}
+
+@SuppressLint("InflateParams")
+fun  <VB:ViewBinding> Context.customAlertDialog(@StyleRes style:Int?=0,binding:VB,
+                                  callback:(VB,AlertDialog)->Unit){
+    if (style != null) {
+        AlertDialog.Builder(this,style).create()
+            .apply {
+                setView(binding.root)
+                setCanceledOnTouchOutside(false)
+                callback(binding,this)
+            }
+    }
+
 }

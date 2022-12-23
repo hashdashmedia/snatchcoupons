@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RadioGroup
+        android:id="@+id/rgFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:theme="@style/CustomRadioTheme">
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbDateFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort expiry date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            />
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbAmountFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort discount amount"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            android:paddingHorizontal="@dimen/_10sdp"/>
+    </RadioGroup>
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:layout_marginBottom="@dimen/_20sdp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/red2"
+        android:textSize="@dimen/_14ssp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:textColor="@color/red2"
+        android:textSize="@dimen/_14ssp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
