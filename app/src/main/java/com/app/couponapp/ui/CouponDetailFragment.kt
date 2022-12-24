@@ -12,6 +12,7 @@ import com.app.couponapp.data.model.CouponDataResponseItem
 import com.app.couponapp.databinding.FragmentCouponDetailBinding
 import com.app.couponapp.util.makeGone
 import com.app.couponapp.util.makeVisible
+import com.app.couponapp.util.openWebView
 import com.app.couponapp.util.showMessage
 import com.bumptech.glide.Glide
 
@@ -63,9 +64,7 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
         launchIntent?.let {
             startActivity(it)
         }?: run{
-            val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            val chooser = Intent.createChooser(sendIntent, "Choose Your Browser")
-            startActivity(chooser)
+            requireContext().openWebView(url)
         }
     }
 
@@ -84,13 +83,13 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
                 tvDescription.text = HtmlCompat.fromHtml(content?.rendered ?: "", FROM_HTML_MODE_COMPACT)
                 tvDescription.makeVisible()
                 tvDescription.post {
-                    tvDescMaxLinesCount = if(tvDescription.text.isNullOrEmpty()) 0 else tvDescription.maxLines
-                }
-                if (tvDescMaxLinesCount > 3) {
-                    tvShowMore.text = "+ Show more"
-                    tvDescription.maxLines = 3
-                } else {
-                    tvShowMore.makeGone()
+                    tvDescMaxLinesCount = if(tvDescription.text.isNullOrEmpty()) 0 else tvDescription.lineCount
+                    if (tvDescMaxLinesCount > 3) {
+                        tvShowMore.text = "+ Show more"
+                        tvDescription.maxLines = 3
+                    } else {
+                        tvShowMore.makeGone()
+                    }
                 }
             }
         }

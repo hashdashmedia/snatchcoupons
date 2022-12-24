@@ -18,4 +18,8 @@ class ApiRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getCouponsListing(id: Int?=null)=flow{
         emit(apiService.getCouponsListing(id))
     }.flowOn(Dispatchers.IO)
+
+    suspend fun getDrawerResponse()=flow{
+        emit(apiService.getDrawerResponse())
+    }.flowOn(Dispatchers.IO)
 }

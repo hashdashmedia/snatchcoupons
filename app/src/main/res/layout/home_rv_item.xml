@@ -112,8 +112,9 @@
            android:layout_height="1dp"
            android:layout_alignEnd="@id/ll_success"
            android:layout_alignParentTop="true"
-           android:layout_marginTop="@dimen/_10sdp"
-           android:background="@color/grey3" />
+           android:layout_marginTop="@dimen/_11sdp"
+           android:background="@color/grey3"
+           android:visibility="invisible"/>
 
        <androidx.appcompat.widget.LinearLayoutCompat
            android:id="@+id/ll_success"
@@ -121,6 +122,7 @@
            android:layout_height="wrap_content"
            android:layout_below="@id/viewTopSuccess"
            android:layout_toStartOf="@id/ivShare"
+           android:background="@color/grey4"
            android:gravity="center">
 
            <androidx.appcompat.widget.LinearLayoutCompat
@@ -154,7 +156,8 @@
                android:layout_width="1dp"
                android:layout_height="match_parent"
                android:layout_marginHorizontal="20dp"
-               android:background="@color/grey3" />
+               android:background="@color/grey1"
+               android:visibility="visible" />
 
            <androidx.appcompat.widget.LinearLayoutCompat
                android:layout_width="wrap_content"
@@ -188,10 +191,10 @@
        <View
            android:id="@+id/viewBottomSuccess"
            android:layout_width="match_parent"
-           android:layout_height="1dp"
-           android:layout_below="@id/ll_success"
-           android:layout_alignEnd="@id/ll_success"
-           android:background="@color/grey3"
+           android:layout_height="@dimen/_4sdp"
+           android:layout_below="@id/ivShare"
+           android:alpha="0.2"
+           android:background="#ACAAAA"
            android:visibility="visible" />
 
        <ImageView

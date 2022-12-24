@@ -80,6 +80,7 @@ class CouponItemAdapter(
                         binding.tvShowCouponCode.setBackgroundColor(Color.GRAY)
                         binding.tvNoPer.setTextColor(Color.GRAY)
                         binding.ivShare.setImageDrawable(ContextCompat.getDrawable(root.context, R.drawable.share_grey_bg_icon))
+                        binding.root.isEnabled=false
                     }
                     if(couponCode.isNullOrEmpty()){
                         tvCouponCode.makeGone()

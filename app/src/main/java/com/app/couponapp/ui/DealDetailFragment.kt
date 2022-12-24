@@ -9,6 +9,7 @@ import com.app.couponapp.data.model.CouponDataResponseItem
 import com.app.couponapp.databinding.FragmentDealDetailBinding
 import com.app.couponapp.util.makeGone
 import com.app.couponapp.util.makeVisible
+import com.app.couponapp.util.openWebView
 import com.bumptech.glide.Glide
 
 
@@ -52,9 +53,7 @@ class DealDetailFragment : BaseFragment<FragmentDealDetailBinding>() {
         launchIntent?.let {
             startActivity(it)
         }?: run{
-            val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            val chooser = Intent.createChooser(sendIntent, "Choose Your Browser")
-            startActivity(chooser)
+            requireContext().openWebView(url)
         }
     }
 
@@ -76,12 +75,14 @@ class DealDetailFragment : BaseFragment<FragmentDealDetailBinding>() {
                 tvUsedToday.text = "USED TODAY $used"
                 tvDescription.text = HtmlCompat.fromHtml(content?.rendered ?: "", FROM_HTML_MODE_COMPACT)
                 tvDescription.makeVisible()
-                tvDescMaxLinesCount = if(tvDescription.text.isNullOrEmpty()) 0 else tvDescription.maxLines
-                if (tvDescMaxLinesCount > 3) {
-                    tvShowMore.text = "+ Show more"
-                    tvDescription.maxLines = 3
-                } else {
-                    tvShowMore.makeGone()
+                tvDescription.post {
+                    tvDescMaxLinesCount = if(tvDescription.text.isNullOrEmpty()) 0 else tvDescription.lineCount
+                    if (tvDescMaxLinesCount > 3) {
+                        tvShowMore.text = "+ Show more"
+                        tvDescription.maxLines = 3
+                    } else {
+                        tvShowMore.makeGone()
+                    }
                 }
             }
         }

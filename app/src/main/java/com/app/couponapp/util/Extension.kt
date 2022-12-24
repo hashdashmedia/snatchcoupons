@@ -35,6 +35,7 @@ fun AppCompatActivity.hideStatusActionBar(){
         )
     }
 }
+
 fun Context.shareApp(data:String){
     val intent = Intent()
     intent.action = Intent.ACTION_SEND
@@ -43,7 +44,8 @@ fun Context.shareApp(data:String){
     intent.type = "text/plain"
     startActivity(intent)
 }
-fun Context.openPlayStore(url: String) {
+
+fun Context.openWebView(url: String) {
     val playIntent: Intent = Intent().apply {
         action = Intent.ACTION_VIEW
         data = Uri.parse(url)
@@ -54,6 +56,7 @@ fun Context.openPlayStore(url: String) {
         // handle the exception
     }
 }
+
 fun Context.showToast(message:String?=null){
     Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
 }

@@ -3,9 +3,12 @@ package com.app.couponapp.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -15,6 +18,7 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.BuildConfig
 import com.app.couponapp.R
+import com.app.couponapp.data.model.DrawerResponse
 import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.databinding.SortItemLayoutBinding
 import com.app.couponapp.util.*
@@ -25,15 +29,32 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var mAppBarConfiguration: AppBarConfiguration
+    private var drawerResponse: DrawerResponse?=null
+    private val couponViewModel by viewModels<CouponViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //hideStatusActionBar()
+        setObserver()
         setUpDrawer()
         setDrawerListener()
         setClickListeners()
     }
+
+    private fun setObserver() {
+        couponViewModel.collectDrawerData().launchAndCollectIn(this, Lifecycle.State.STARTED){ it->
+            when(it){
+                is Resource.Success -> {
+                   drawerResponse=it.data
+                }
+                is Resource.Loading -> {}
+                is Resource.Error ->  {}
+                else -> {}
+            }
+        }
+    }
+
 
     private fun setClickListeners() {
         binding.contentMainLayout.appBarLayout.ivToolbarShare.setOnClickListener {
@@ -59,7 +80,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDrawerListener() {
-
+        binding.rootDrawerLayout.llAboutUs.setOnClickListener {
+            openWebView(drawerResponse?.aboutUrl?:"")
+        }
+        binding.rootDrawerLayout.llPrivacyPolicy.setOnClickListener {
+            openWebView(drawerResponse?.privacyUrl?:"")
+        }
+        binding.rootDrawerLayout.llTermCondition.setOnClickListener {
+            openWebView(drawerResponse?.tncUrl?:"")
+        }
         binding.rootDrawerLayout.llHome.setOnClickListener {
             binding.bottomNav.selectedItemId=R.id.navHomePage
             binding.drawerLayoutRoot.close()
@@ -68,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
         }
         binding.rootDrawerLayout.llRateApp.setOnClickListener {
-            openPlayStore("market://details?id=${BuildConfig.APPLICATION_ID}")
+            openWebView("market://details?id=${BuildConfig.APPLICATION_ID}")
         }
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {

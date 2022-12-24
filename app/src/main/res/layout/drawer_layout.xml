@@ -69,6 +69,7 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llAboutUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -90,6 +91,7 @@
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llPrivacyPolicy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -109,7 +111,9 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             />
-    </androidx.appcompat.widget.LinearLayoutCompat><androidx.appcompat.widget.LinearLayoutCompat
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llTermCondition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
