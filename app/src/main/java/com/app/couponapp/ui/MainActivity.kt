@@ -1,16 +1,11 @@
 package com.app.couponapp.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.viewModels
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
@@ -81,13 +76,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setDrawerListener() {
         binding.rootDrawerLayout.llAboutUs.setOnClickListener {
-            openWebView(drawerResponse?.aboutUrl?:"")
+           navigateToCustomWebView(drawerResponse?.aboutUrl?:"")
         }
         binding.rootDrawerLayout.llPrivacyPolicy.setOnClickListener {
-            openWebView(drawerResponse?.privacyUrl?:"")
+            navigateToCustomWebView(drawerResponse?.privacyUrl?:"")
         }
         binding.rootDrawerLayout.llTermCondition.setOnClickListener {
-            openWebView(drawerResponse?.tncUrl?:"")
+            navigateToCustomWebView(drawerResponse?.tncUrl?:"")
         }
         binding.rootDrawerLayout.llHome.setOnClickListener {
             binding.bottomNav.selectedItemId=R.id.navHomePage
@@ -111,6 +106,7 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.title = ""
             binding.contentMainLayout.appBarLayout.tvToolbar.text = destination.label.toString()
         }
+        binding.bottomNav.setOnItemReselectedListener{}
       binding.bottomNav.setOnItemSelectedListener {
           when(it.itemId){
               R.id.nav_graph_sort->{
@@ -130,10 +126,28 @@ class MainActivity : AppCompatActivity() {
                   }
                   true
               }
-              else -> {true}
+              R.id.navDeal->{
+                  navController.navigate(R.id.navDeal)
+                  true
+              }R.id.navCoupon->{
+                  navController.navigate(R.id.navCoupon)
+                  true
+              }R.id.navHomePage->{
+                  navController.navigate(R.id.navHomePage)
+                  true
+              }
+              else -> {
+
+                  return@setOnItemSelectedListener true
+              }
 
           }
       }
+    }
+
+    private fun navigateToCustomWebView(url: String) {
+        navController.navigate(R.id.nav_webView, bundleOf("url" to url))
+        binding.drawerLayoutRoot.close()
     }
 
 

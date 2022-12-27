@@ -35,4 +35,9 @@
         android:label="MICHAEL’S COUPONS"
         android:name="com.app.couponapp.ui.HomePageFragment"
         tools:layout="@layout/fragment_home_page"/>
+    <fragment
+        android:id="@+id/nav_webView"
+        android:label="WebView"
+        android:name="com.app.couponapp.ui.WebViewFragment"
+        tools:layout="@layout/fragment_web_view"/>
 </navigation>
