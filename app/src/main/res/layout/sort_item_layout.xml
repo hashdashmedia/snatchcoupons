@@ -16,7 +16,7 @@
             android:id="@+id/rbDateFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort expiry date"
+            android:text="Sort by expiry date"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             android:paddingHorizontal="@dimen/_10sdp"
@@ -25,7 +25,7 @@
             android:id="@+id/rbAmountFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort discount amount"
+            android:text="Sort by discount value"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             android:paddingHorizontal="@dimen/_10sdp"/>

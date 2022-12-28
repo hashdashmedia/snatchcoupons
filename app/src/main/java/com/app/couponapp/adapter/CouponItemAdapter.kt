@@ -41,7 +41,6 @@ class CouponItemAdapter(
     override fun onBindViewHolder(holder: CouponHolder, position: Int) {
         holder.bindItem(getItem(position))
     }
-
     inner class CouponHolder(private val binding: HomeRvItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {

@@ -54,9 +54,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
    }
     private fun filterList(list: List<CouponDataResponseItem>?): List<CouponDataResponseItem> ?{
         val currentTimeDate = Date().time
-        val list = list?.sortedByDescending {
-            it.acf?.discountValue?.dropLast(it.acf.discountValue.length - 1)
-        }?.sortedByDescending{
+        val list = list?.sortedByDescending{
             it.expire?.toDoubleOrNull()
         }?.map {
             val expTimeDate = (it.expire?.toLong()?:0)*1000
@@ -64,6 +62,26 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             it
         }
         return list
+    }
+
+    fun filterByDate(){
+        val currentTimeDate = Date().time
+        val list= couponItemAdapter.currentList.sortedByDescending{
+            it.expire?.toDoubleOrNull()
+        }.map {
+            val expTimeDate = (it.expire?.toLong()?:0)*1000
+            it.isExpire=currentTimeDate>expTimeDate
+            it
+        }
+        couponItemAdapter.submitList(list)
+    }
+
+    fun filterByValue(){
+        val list=couponItemAdapter.currentList.filter { it.isExpire==false }.sortedByDescending {
+            it.acf?.discountValue?.dropLast(it.acf.discountValue.length - 1)
+        }
+        val expireList=couponItemAdapter.currentList.filter {it.isExpire==true}
+        couponItemAdapter.submitList(list.plus(expireList))
     }
 
     override fun init() {

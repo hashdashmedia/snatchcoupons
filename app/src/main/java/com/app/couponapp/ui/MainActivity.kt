@@ -106,24 +106,17 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.title = ""
             binding.contentMainLayout.appBarLayout.tvToolbar.text = destination.label.toString()
         }
-        binding.bottomNav.setOnItemReselectedListener{}
+        binding.bottomNav.setOnItemReselectedListener{
+            when(it.itemId) {
+                R.id.nav_graph_sort -> {
+                    openSortDialog()
+                }
+            }
+        }
       binding.bottomNav.setOnItemSelectedListener {
           when(it.itemId){
               R.id.nav_graph_sort->{
-                  customAlertDialog(R.style.CustomAlertDialog
-                      ,SortItemLayoutBinding.inflate(layoutInflater)){binding,dialog->
-                      binding.tvCancel.setOnClickListener {
-                          dialog.dismiss()
-                      }
-                      binding.tvOk.setOnClickListener {
-                          dialog.dismiss()
-                          when(binding.rgFilter.checkedRadioButtonId){
-                             R.id.rbDateFilter->{showMessage("rbDate")}
-                             R.id.rbAmountFilter->{showMessage("rbAmount")}
-                          }
-                      }
-                      dialog.show()
-                  }
+                  openSortDialog()
                   true
               }
               R.id.navDeal->{
@@ -143,6 +136,31 @@ class MainActivity : AppCompatActivity() {
 
           }
       }
+    }
+
+    private fun openSortDialog() {
+        customAlertDialog(R.style.CustomAlertDialog
+            ,SortItemLayoutBinding.inflate(layoutInflater)){binding,dialog->
+            binding.tvCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            binding.tvOk.setOnClickListener {
+                dialog.dismiss()
+                val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                val currentFragment = navHostFragment.childFragmentManager.primaryNavigationFragment
+                if(currentFragment is HomePageFragment) {
+                    when (binding.rgFilter.checkedRadioButtonId) {
+                        R.id.rbDateFilter -> {
+                            currentFragment.filterByDate()
+                        }
+                        R.id.rbAmountFilter -> {
+                            currentFragment.filterByValue()
+                        }
+                    }
+                }
+            }
+            dialog.show()
+        }
     }
 
     private fun navigateToCustomWebView(url: String) {
