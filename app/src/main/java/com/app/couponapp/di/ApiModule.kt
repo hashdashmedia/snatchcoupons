@@ -44,4 +44,5 @@ object ApiModule {
     fun provideNewsApi(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
 }

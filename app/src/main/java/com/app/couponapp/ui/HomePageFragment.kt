@@ -14,7 +14,6 @@ import com.app.couponapp.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
 @AndroidEntryPoint
 class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     private val couponItemAdapter by lazy {

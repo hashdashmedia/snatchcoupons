@@ -79,6 +79,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     //crashlytics
     implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
+    implementation 'com.facebook.android:audience-network-sdk:6.12.0'//fb ad
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

@@ -17,24 +17,38 @@ import com.app.couponapp.data.model.DrawerResponse
 import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.databinding.SortItemLayoutBinding
 import com.app.couponapp.util.*
+import com.facebook.ads.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
+
+    private val addView by lazy {
+        AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+    }
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var mAppBarConfiguration: AppBarConfiguration
     private var drawerResponse: DrawerResponse?=null
     private val couponViewModel by viewModels<CouponViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AudienceNetworkAds.initialize(this)
         //hideStatusActionBar()
         setObserver()
         setUpDrawer()
         setDrawerListener()
         setClickListeners()
+        binding.bannerAdFb.addView(addView)
+        AdSettings.addTestDevice("bd03635e-c1b5-407a-a9ff-814689690aff")
+        addView.loadAd(addView.buildLoadAdConfig().withAdListener(BannerFbAdsImp(object :CustomAdsListener{
+            override fun onAdLoad(add: Ad?) {
+
+            }
+        })).build())
     }
 
     private fun setObserver() {
@@ -53,7 +67,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setClickListeners() {
         binding.contentMainLayout.appBarLayout.ivToolbarShare.setOnClickListener {
-          shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
+         shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
+
         }
     }
 
