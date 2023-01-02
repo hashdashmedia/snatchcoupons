@@ -1,7 +1,6 @@
 package com.app.couponapp
 
 import android.app.Application
-import com.facebook.ads.AdSettings
 import com.facebook.ads.AudienceNetworkAds
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.HiltAndroidApp

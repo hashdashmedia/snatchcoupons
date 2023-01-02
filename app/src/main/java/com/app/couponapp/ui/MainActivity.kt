@@ -59,9 +59,7 @@ class MainActivity : AppCompatActivity(){
         binding.bannerAdFb.addView(addView)
         AdSettings.addTestDevice("bd03635e-c1b5-407a-a9ff-814689690aff")
         addView.loadAd(addView.buildLoadAdConfig().withAdListener(BannerFbAdsImp(object :CustomAdsListener{
-            override fun onAdLoad(p0: Ad?) {
-
-            }
+            override fun onAdLoad(p0: Ad?){}
         })).build())
     }
 
@@ -74,7 +72,6 @@ class MainActivity : AppCompatActivity(){
                     Log.e(TAG, "Ad was loaded.")
                     mInterstitialAd = interstitialAd
                 }
-
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     adError.toString().let { Log.e(TAG, it) }
                     mInterstitialAd = null
@@ -101,7 +98,6 @@ class MainActivity : AppCompatActivity(){
     private fun setClickListeners() {
         binding.contentMainLayout.appBarLayout.ivToolbarShare.setOnClickListener {
          shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
-
         }
     }
 
