@@ -38,6 +38,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         }
     }
    private val onCouponItemClick:(CouponDataResponseItem,Boolean)->Unit = {data,isShare->
+       if(!isShare){
+           (activity as MainActivity).loadInterAdMob()
+           (activity as MainActivity).showInterAdMob()
+       }
        if(isShare){
            val intent = Intent()
            intent.action = Intent.ACTION_SEND

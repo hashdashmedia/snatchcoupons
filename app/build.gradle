@@ -80,6 +80,7 @@ dependencies {
     //crashlytics
     implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
     implementation 'com.facebook.android:audience-network-sdk:6.12.0'//fb ad
+    implementation 'com.google.android.gms:play-services-ads:21.4.0'//google ad mob
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

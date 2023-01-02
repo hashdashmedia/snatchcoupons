@@ -1,6 +1,7 @@
 package com.app.couponapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -18,13 +19,21 @@ import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.databinding.SortItemLayoutBinding
 import com.app.couponapp.util.*
 import com.facebook.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.admanager.AdManagerAdRequest
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(){
-
+    private var mInterstitialAd: InterstitialAd? = null
+    private final var TAG = "MainActivity"
     private val addView by lazy {
-        AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+        AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
     }
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -36,21 +45,45 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AudienceNetworkAds.initialize(this)
         //hideStatusActionBar()
         setObserver()
         setUpDrawer()
         setDrawerListener()
         setClickListeners()
+        adsFbSetUp()
+        loadInterAdMob()
+    }
+
+    private fun adsFbSetUp() {
+        /**fb banner ads**/
         binding.bannerAdFb.addView(addView)
         AdSettings.addTestDevice("bd03635e-c1b5-407a-a9ff-814689690aff")
         addView.loadAd(addView.buildLoadAdConfig().withAdListener(BannerFbAdsImp(object :CustomAdsListener{
-            override fun onAdLoad(add: Ad?) {
+            override fun onAdLoad(p0: Ad?) {
 
             }
         })).build())
     }
 
+    fun loadInterAdMob(){
+        /**google interstitialAd ads**/
+        val adRequest: AdRequest = AdManagerAdRequest.Builder().build()
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712",adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.e(TAG, "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    adError.toString().let { Log.e(TAG, it) }
+                    mInterstitialAd = null
+                }
+            })
+    }
+    fun showInterAdMob(){
+        mInterstitialAd?.show(this)
+    }
     private fun setObserver() {
         couponViewModel.collectDrawerData().launchAndCollectIn(this, Lifecycle.State.STARTED){ it->
             when(it){
@@ -202,5 +235,7 @@ class MainActivity : AppCompatActivity(){
     override fun onNavigateUp(): Boolean {
         return super.onNavigateUp()
     }
+
+
 
 }
