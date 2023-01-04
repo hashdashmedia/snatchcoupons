@@ -16,15 +16,16 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
     override fun getViewBinding() = FragmentWebViewBinding.inflate(layoutInflater)
     override fun observe() {}
     @SuppressLint("SetJavaScriptEnabled")
-    override fun init() {
-        arguments?.let {
+    override fun init(){
+        arguments?.let{
            urlLink= it.getString("url")
         }
-        dataBinding.webView.apply {
+        dataBinding.webView.loadData(urlLink?:"", "text/html", "UTF-8")
+       /* dataBinding.webView.apply{
             settings.javaScriptEnabled = true
             webViewClient=webViewClientObject
             urlLink?.let { loadUrl(it) }
-        }
+        }*/
     }
     private var webViewClientObject=object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {

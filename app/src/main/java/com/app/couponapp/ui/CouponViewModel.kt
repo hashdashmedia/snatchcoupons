@@ -25,8 +25,8 @@ class CouponViewModel @Inject constructor(
     private val _mutableDrawerData = MutableStateFlow<Resource<DrawerResponse>>(Resource.Empty())
     fun collectDrawerData(): StateFlow<Resource<DrawerResponse>> = _mutableDrawerData
 
-    init {
-        getDrawerResponse()
+    init{
+       getDrawerResponse()
     }
 
     fun getCouponsListing(id:Int?=null){

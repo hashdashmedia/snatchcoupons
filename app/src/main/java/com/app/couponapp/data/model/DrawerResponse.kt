@@ -6,9 +6,14 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class DrawerResponse(
+	@field:SerializedName("acf")
+	val data: Data? = null,
+) : Parcelable
 
-	@field:SerializedName("privacy-url")
-	val privacyUrl: String? = null,
+@Parcelize
+data class Data(
+	@field:SerializedName("privacy_policy")
+	val privacy_policy: String? = null,
 
 	@field:SerializedName("app-link")
 	val appLink: String? = null,
@@ -16,9 +21,9 @@ data class DrawerResponse(
 	@field:SerializedName("rate-us")
 	val rateUs: String? = null,
 
-	@field:SerializedName("tnc-url")
+	@field:SerializedName("terms_and_conditions")
 	val tncUrl: String? = null,
 
-	@field:SerializedName("about-url")
+	@field:SerializedName("about_us")
 	val aboutUrl: String? = null
 ) : Parcelable

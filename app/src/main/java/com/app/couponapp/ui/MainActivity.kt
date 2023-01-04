@@ -24,9 +24,8 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.admanager.AdManagerAdRequest
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-
-
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(){
@@ -57,10 +56,28 @@ class MainActivity : AppCompatActivity(){
     private fun adsFbSetUp() {
         /**fb banner ads**/
         binding.bannerAdFb.addView(addView)
-        AdSettings.addTestDevice("bd03635e-c1b5-407a-a9ff-814689690aff")
-        addView.loadAd(addView.buildLoadAdConfig().withAdListener(BannerFbAdsImp(object :CustomAdsListener{
+        AdSettings.addTestDevice("52db118f-52d3-4ec3-899b-ebdebeb6b02e")
+        /*addView.loadAd(addView.buildLoadAdConfig().withAdListener(BannerFbAdsImp(object :CustomAdsListener{
             override fun onAdLoad(p0: Ad?){}
-        })).build())
+        })).build())*/
+        addView.loadAd(addView.buildLoadAdConfig().withAdListener(object:AdListener{
+            override fun onError(p0: Ad?, p1: AdError?) {
+                showMessage("${p1?.errorMessage} ${p1?.errorCode}")
+            }
+
+            override fun onAdLoaded(p0: Ad?) {
+                showMessage("loadFbAdd}")
+            }
+
+            override fun onAdClicked(p0: Ad?) {
+                showMessage("FbAddClick")
+            }
+
+            override fun onLoggingImpression(p0: Ad?) {
+                showMessage("fb add onLoggingImpression")
+            }
+
+        }).build())
     }
 
     fun loadInterAdMob(){
@@ -106,6 +123,7 @@ class MainActivity : AppCompatActivity(){
         navController =
             (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
         // mAppBarConfiguration = AppBarConfiguration.Builder(navController.graph)
+
         mAppBarConfiguration = AppBarConfiguration(
             setOf(R.id.navHomePage, R.id.navCoupon, R.id.navDeal),
             binding.drawerLayoutRoot
@@ -118,15 +136,15 @@ class MainActivity : AppCompatActivity(){
         binding.navigationView.bringToFront()
     }
 
-    private fun setDrawerListener() {
+    private fun setDrawerListener(){
         binding.rootDrawerLayout.llAboutUs.setOnClickListener {
-           navigateToCustomWebView(drawerResponse?.aboutUrl?:"")
+           navigateToCustomWebView(drawerResponse?.data?.aboutUrl?:"")
         }
         binding.rootDrawerLayout.llPrivacyPolicy.setOnClickListener {
-            navigateToCustomWebView(drawerResponse?.privacyUrl?:"")
+            navigateToCustomWebView(drawerResponse?.data?.privacy_policy?:"")
         }
         binding.rootDrawerLayout.llTermCondition.setOnClickListener {
-            navigateToCustomWebView(drawerResponse?.tncUrl?:"")
+            navigateToCustomWebView(drawerResponse?.data?.tncUrl?:"")
         }
         binding.rootDrawerLayout.llHome.setOnClickListener {
             binding.bottomNav.selectedItemId=R.id.navHomePage
@@ -150,6 +168,7 @@ class MainActivity : AppCompatActivity(){
             supportActionBar?.title = ""
             binding.contentMainLayout.appBarLayout.tvToolbar.text = destination.label.toString()
         }
+
         binding.bottomNav.setOnItemReselectedListener{
             when(it.itemId) {
                 R.id.nav_graph_sort -> {
@@ -157,6 +176,7 @@ class MainActivity : AppCompatActivity(){
                 }
             }
         }
+
       binding.bottomNav.setOnItemSelectedListener {
           when(it.itemId){
               R.id.nav_graph_sort->{
@@ -232,6 +252,12 @@ class MainActivity : AppCompatActivity(){
         return super.onNavigateUp()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        addView.destroy()
+    }
 }

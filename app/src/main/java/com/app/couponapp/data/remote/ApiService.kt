@@ -14,7 +14,7 @@ interface ApiService {
         @Query("coupon-store") countryCode: Int?=null,
     ):List<CouponDataResponseItem>
 
-    @GET("json-details/michaels-store-details.json")
+    @GET("wp-json/wp/v2/coupon-store/48")
     suspend fun getDrawerResponse():DrawerResponse
 
 }

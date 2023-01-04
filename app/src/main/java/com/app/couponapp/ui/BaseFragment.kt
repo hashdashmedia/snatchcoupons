@@ -17,6 +17,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment(), BaseMethods {
         getViewModel()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         showSBar()
         super.onActivityCreated(savedInstanceState)
