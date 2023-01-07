@@ -30,6 +30,7 @@ class CouponDetailFragment : BaseFragment<FragmentCouponDetailBinding>() {
         }
         setClickListeners()
         setScreenData()
+        (activity as MainActivity).couponDetailBannerAd()
     }
 
     private fun setClickListeners() {

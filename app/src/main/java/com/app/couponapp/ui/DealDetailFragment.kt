@@ -26,6 +26,7 @@ class DealDetailFragment : BaseFragment<FragmentDealDetailBinding>() {
         }
         setClickListeners()
         setScreenData()
+        (activity as MainActivity).dealDetailBannerAd()
     }
 
     private fun setClickListeners() {

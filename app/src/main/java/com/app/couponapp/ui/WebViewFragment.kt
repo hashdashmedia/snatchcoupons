@@ -13,12 +13,14 @@ import com.app.couponapp.util.makeVisible
 
 class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
     var urlLink:String?=null
+    var title:String?=null
     override fun getViewBinding() = FragmentWebViewBinding.inflate(layoutInflater)
     override fun observe() {}
     @SuppressLint("SetJavaScriptEnabled")
     override fun init(){
         arguments?.let{
            urlLink= it.getString("url")
+           title= it.getString("url")
         }
         dataBinding.webView.loadData(urlLink?:"", "text/html", "UTF-8")
        /* dataBinding.webView.apply{

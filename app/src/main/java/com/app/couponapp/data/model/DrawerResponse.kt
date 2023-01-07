@@ -12,6 +12,33 @@ data class DrawerResponse(
 
 @Parcelize
 data class Data(
+	@field:SerializedName("deal_detail_banner")
+	val dealDetailBanner: String? = null,
+
+	@field:SerializedName("deal_detail_interstitial")
+	val dealDetailInterstitial: String? = null,
+
+	@field:SerializedName("coupon_detail_banner")
+	val couponDetailBanner: String? = null,
+
+	@field:SerializedName("coupon_detail_interstitial")
+	val couponDetailInterstitial: String? = null,
+
+	@field:SerializedName("coupon_ad_banner")
+	val couponAdBanner: String? = null,
+
+	@field:SerializedName("coupon_ad_interstitial")
+	val couponAdInterstitial: String? = null,
+
+	@field:SerializedName("home_ad_banner")
+	val homeAdBanner: String? = null,
+
+	@field:SerializedName("home_ad_interstitial")
+	val homeAdInterstitial: String? = null,
+
+	@field:SerializedName("store_image_url")
+	val storeImageUrl: String? = null,
+
 	@field:SerializedName("privacy_policy")
 	val privacy_policy: String? = null,
 

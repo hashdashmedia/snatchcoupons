@@ -2,6 +2,7 @@ package com.app.couponapp.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -18,6 +19,7 @@ import com.app.couponapp.data.model.DrawerResponse
 import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.databinding.SortItemLayoutBinding
 import com.app.couponapp.util.*
+import com.bumptech.glide.Glide
 import com.facebook.ads.*
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -25,19 +27,23 @@ import com.google.android.gms.ads.admanager.AdManagerAdRequest
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(){
-    private var mInterstitialAd: InterstitialAd? = null
+class MainActivity : AppCompatActivity() {
+    private var mInterstitialGoogleAd: InterstitialAd? = null
     private final var TAG = "MainActivity"
-    private val addView by lazy {
+    private val addViewFbBanner by lazy {
         AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
     }
+    private var interstitiaFblAd:com.facebook.ads.InterstitialAd?=null
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var mAppBarConfiguration: AppBarConfiguration
-    private var drawerResponse: DrawerResponse?=null
+    private var drawerResponse: DrawerResponse? = null
     private val couponViewModel by viewModels<CouponViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,72 +55,31 @@ class MainActivity : AppCompatActivity(){
         setUpDrawer()
         setDrawerListener()
         setClickListeners()
-        adsFbSetUp()
-        loadInterAdMob()
-    }
-
-    private fun adsFbSetUp() {
-        /**fb banner ads**/
-        binding.bannerAdFb.addView(addView)
-        AdSettings.addTestDevice("52db118f-52d3-4ec3-899b-ebdebeb6b02e")
-        /*addView.loadAd(addView.buildLoadAdConfig().withAdListener(BannerFbAdsImp(object :CustomAdsListener{
-            override fun onAdLoad(p0: Ad?){}
-        })).build())*/
-        addView.loadAd(addView.buildLoadAdConfig().withAdListener(object:AdListener{
-            override fun onError(p0: Ad?, p1: AdError?) {
-                showMessage("${p1?.errorMessage} ${p1?.errorCode}")
-            }
-
-            override fun onAdLoaded(p0: Ad?) {
-                showMessage("loadFbAdd}")
-            }
-
-            override fun onAdClicked(p0: Ad?) {
-                showMessage("FbAddClick")
-            }
-
-            override fun onLoggingImpression(p0: Ad?) {
-                showMessage("fb add onLoggingImpression")
-            }
-
-        }).build())
-    }
-
-    fun loadInterAdMob(){
-        /**google interstitialAd ads**/
-        val adRequest: AdRequest = AdManagerAdRequest.Builder().build()
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712",adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    Log.e(TAG, "Ad was loaded.")
-                    mInterstitialAd = interstitialAd
-                }
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    adError.toString().let { Log.e(TAG, it) }
-                    mInterstitialAd = null
-                }
-            })
-    }
-    fun showInterAdMob(){
-        mInterstitialAd?.show(this)
     }
     private fun setObserver() {
-        couponViewModel.collectDrawerData().launchAndCollectIn(this, Lifecycle.State.STARTED){ it->
-            when(it){
-                is Resource.Success -> {
-                   drawerResponse=it.data
+        couponViewModel.collectDrawerData()
+            .launchAndCollectIn(this, Lifecycle.State.STARTED) { it ->
+                when (it) {
+                    is Resource.Success -> {
+                        drawerResponse = it.data
+                        Glide.with(this@MainActivity).load(drawerResponse?.data?.storeImageUrl)
+                            .into(binding.rootDrawerLayout.ivProfile)
+                        setAdsByCheck(
+                            drawerResponse?.data?.homeAdBanner,
+                            drawerResponse?.data?.homeAdInterstitial
+                        )
+                    }
+                    is Resource.Loading -> {}
+                    is Resource.Error -> {}
+                    else -> {}
                 }
-                is Resource.Loading -> {}
-                is Resource.Error ->  {}
-                else -> {}
             }
-        }
     }
 
 
     private fun setClickListeners() {
         binding.contentMainLayout.appBarLayout.ivToolbarShare.setOnClickListener {
-         shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
+            shareApp("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}\n\n")
         }
     }
 
@@ -136,18 +101,21 @@ class MainActivity : AppCompatActivity(){
         binding.navigationView.bringToFront()
     }
 
-    private fun setDrawerListener(){
+    private fun setDrawerListener() {
         binding.rootDrawerLayout.llAboutUs.setOnClickListener {
-           navigateToCustomWebView(drawerResponse?.data?.aboutUrl?:"")
+            navigateToCustomWebView(
+                drawerResponse?.data?.aboutUrl ?: "",
+                "About Us"
+            )
         }
         binding.rootDrawerLayout.llPrivacyPolicy.setOnClickListener {
-            navigateToCustomWebView(drawerResponse?.data?.privacy_policy?:"")
+            navigateToCustomWebView(drawerResponse?.data?.privacy_policy ?: "", "Privacy Policy")
         }
         binding.rootDrawerLayout.llTermCondition.setOnClickListener {
-            navigateToCustomWebView(drawerResponse?.data?.tncUrl?:"")
+            navigateToCustomWebView(drawerResponse?.data?.tncUrl ?: "", "Term and Condition")
         }
         binding.rootDrawerLayout.llHome.setOnClickListener {
-            binding.bottomNav.selectedItemId=R.id.navHomePage
+            binding.bottomNav.selectedItemId = R.id.navHomePage
             binding.drawerLayoutRoot.close()
         }
         binding.rootDrawerLayout.llShare.setOnClickListener {
@@ -160,6 +128,19 @@ class MainActivity : AppCompatActivity(){
             when (destination.id) {
                 R.id.navHomePage -> {
                     binding.contentMainLayout.appBarLayout.ivToolbarShare.makeGone()
+                    adsAccCurrentFrag()
+                }
+                R.id.navCoupon -> {
+                    binding.contentMainLayout.appBarLayout.ivToolbarShare.makeVisible()
+                    adsAccCurrentFrag()
+                }
+                R.id.navDeal -> {
+                    binding.contentMainLayout.appBarLayout.ivToolbarShare.makeVisible()
+                    adsAccCurrentFrag()
+                }
+                R.id.nav_webView -> {
+                    binding.contentMainLayout.appBarLayout.ivToolbarShare.makeVisible()
+                    adsAccCurrentFrag()
                 }
                 else -> {
                     binding.contentMainLayout.appBarLayout.ivToolbarShare.makeVisible()
@@ -167,52 +148,155 @@ class MainActivity : AppCompatActivity(){
             }
             supportActionBar?.title = ""
             binding.contentMainLayout.appBarLayout.tvToolbar.text = destination.label.toString()
+
         }
 
-        binding.bottomNav.setOnItemReselectedListener{
-            when(it.itemId) {
+        binding.bottomNav.setOnItemReselectedListener {
+            when (it.itemId) {
                 R.id.nav_graph_sort -> {
                     openSortDialog()
                 }
             }
         }
 
-      binding.bottomNav.setOnItemSelectedListener {
-          when(it.itemId){
-              R.id.nav_graph_sort->{
-                  openSortDialog()
-                  true
-              }
-              R.id.navDeal->{
-                  navController.navigate(R.id.navDeal)
-                  true
-              }R.id.navCoupon->{
-                  navController.navigate(R.id.navCoupon)
-                  true
-              }R.id.navHomePage->{
-                  navController.navigate(R.id.navHomePage)
-                  true
-              }
-              else -> {
-
-                  return@setOnItemSelectedListener true
-              }
-
-          }
-      }
+        binding.bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_graph_sort -> {
+                    openSortDialog()
+                    true
+                }
+                R.id.navDeal -> {
+                    navController.navigate(R.id.navDeal)
+                    true
+                }
+                R.id.navCoupon -> {
+                    navController.navigate(R.id.navCoupon)
+                    true
+                }
+                R.id.navHomePage -> {
+                    navController.navigate(R.id.navHomePage)
+                    true
+                }
+                else -> {
+                    return@setOnItemSelectedListener true
+                }
+            }
+        }
     }
 
+    fun showInterAdd(screen: String? = null) {
+        val intAdValue=when(screen){
+            "coupon"->drawerResponse?.data?.couponDetailInterstitial
+            "deal"->drawerResponse?.data?.dealDetailInterstitial
+            else -> { "" }
+        }
+        if(intAdValue?.equals("google") == true && mInterstitialGoogleAd!=null){
+            mInterstitialGoogleAd?.show(this)
+            loadGoogleInterAd()
+        }
+        if(intAdValue?.equals("fb") == true && interstitiaFblAd?.isAdLoaded == true){
+            interstitiaFblAd?.show()
+            loadFbInterAdd()
+        }
+    }
+
+    private fun setAdsByCheck(homeAdBanner: String?, homeAdInterstitial: String?) {
+        homeAdBanner.takeIf { !it.equals("blank") && (it?.isNotEmpty() == true) }.apply {
+            when (this) {
+                "google" -> loadBannerGoogleAd()
+                "fb" -> adFbBannerSetUp()
+                else -> {}
+            }
+        }?: kotlin.run {
+            binding.contentMainLayout.bannerAdFb.makeGone()
+            binding.contentMainLayout.adViewBannerGoogle.makeGone()
+        }
+
+        drawerResponse?.data?.dealDetailInterstitial.takeIf { !it.equals("blank") && (it?.isNotEmpty() == true) }.run {
+            when (this) {
+                "google" -> loadGoogleInterAd()
+                "fb" -> loadFbInterAdd()
+                else -> {}
+            }
+        }
+
+        drawerResponse?.data?.couponDetailInterstitial.takeIf { !it.equals("blank") && (it?.isNotEmpty() == true) }.run {
+            when (this) {
+                "google" -> loadGoogleInterAd()
+                "fb" -> loadFbInterAdd()
+                else -> {}
+            }
+        }
+    }
+
+    fun loadFbInterAdd() {
+        if(interstitiaFblAd!=null) {
+            interstitiaFblAd=null
+        }
+       interstitiaFblAd = InterstitialAd(this, "YOUR_PLACEMENT_ID")
+        interstitiaFblAd?.loadAd(
+                interstitiaFblAd?.buildLoadAdConfig()
+                    ?.withAdListener(InterstitialFbAdsImp(object : CustomAdsListener {
+                        override fun onAdLoad(p0: Ad?) {}
+                    }))?.build()
+            )
+
+    }
+
+    private fun adFbBannerSetUp() {
+        /**fb banner ads**/
+        binding.contentMainLayout.bannerAdFb.makeVisible()
+        binding.contentMainLayout.adViewBannerGoogle.makeGone()
+        if(binding.contentMainLayout.bannerAdFb.childCount!=1) {
+            binding.contentMainLayout.bannerAdFb.addView(addViewFbBanner)
+            AdSettings.addTestDevice("fef30bf7-91fd-40c8-ada5-16fa32ea3149")
+        }
+        addViewFbBanner.loadAd(
+            addViewFbBanner.buildLoadAdConfig()
+                .withAdListener(BannerFbAdsImp(object : CustomAdsListener {
+                    override fun onAdLoad(p0: Ad?) {}
+                })).build()
+        )
+    }
+
+    fun loadBannerGoogleAd() {
+        binding.contentMainLayout.bannerAdFb.makeGone()
+        binding.contentMainLayout.adViewBannerGoogle.makeVisible()
+        val adRequest = AdRequest.Builder().build()
+        binding.contentMainLayout.adViewBannerGoogle.loadAd(adRequest)
+    }
+
+    fun loadGoogleInterAd() {
+        /**google interstitialAd ads**/
+        val adRequest: AdRequest = AdManagerAdRequest.Builder().build()
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.e(TAG, "Ad was loaded.")
+                    mInterstitialGoogleAd = interstitialAd
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    adError.toString().let { Log.e(TAG, it) }
+                    mInterstitialGoogleAd = null
+                }
+            })
+    }
+
+
     private fun openSortDialog() {
-        customAlertDialog(R.style.CustomAlertDialog
-            ,SortItemLayoutBinding.inflate(layoutInflater)){binding,dialog->
+        customAlertDialog(
+            R.style.CustomAlertDialog, SortItemLayoutBinding.inflate(layoutInflater)
+        ) { binding, dialog ->
             binding.tvCancel.setOnClickListener {
                 dialog.dismiss()
             }
             binding.tvOk.setOnClickListener {
                 dialog.dismiss()
-                val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                val navHostFragment =
+                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
                 val currentFragment = navHostFragment.childFragmentManager.primaryNavigationFragment
-                if(currentFragment is HomePageFragment) {
+                if (currentFragment is HomePageFragment) {
                     when (binding.rgFilter.checkedRadioButtonId) {
                         R.id.rbDateFilter -> {
                             currentFragment.filterByDate()
@@ -227,17 +311,11 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    private fun navigateToCustomWebView(url: String) {
-        navController.navigate(R.id.nav_webView, bundleOf("url" to url))
+    private fun navigateToCustomWebView(url: String, title: String) {
+        navController.navigate(R.id.nav_webView, bundleOf("url" to url, "title" to title))
+        binding.contentMainLayout.appBarLayout.tvToolbar.text = title
         binding.drawerLayoutRoot.close()
     }
-
-
-    override fun onSupportNavigateUp(): Boolean {
-        return (navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp())
-    }
-
     fun getCurrentTab(): CharSequence =
         binding.bottomNav.menu.findItem(binding.bottomNav.selectedItemId).title
 
@@ -247,6 +325,20 @@ class MainActivity : AppCompatActivity(){
             "hide" -> binding.bottomNav.makeGone()
         }
     }
+
+    fun couponDetailBannerAd(){
+      setAdsByCheck(drawerResponse?.data?.couponDetailBanner,"")
+    }
+
+    fun dealDetailBannerAd(){
+      setAdsByCheck(drawerResponse?.data?.dealDetailBanner,"")
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return (navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp())
+    }
+
 
     override fun onNavigateUp(): Boolean {
         return super.onNavigateUp()
@@ -258,6 +350,24 @@ class MainActivity : AppCompatActivity(){
 
     override fun onDestroy() {
         super.onDestroy()
-        addView.destroy()
+        addViewFbBanner.destroy()
+        interstitiaFblAd?.destroy()
+    }
+
+    override fun onBackPressed(){
+        super.onBackPressed()
+    }
+
+    private fun adsAccCurrentFrag() {
+        val currentFrag= navController.currentDestination?.id
+        val adType=drawerResponse?.data
+        when(currentFrag){
+            R.id.navHomePage->setAdsByCheck(adType?.homeAdBanner,adType?.homeAdInterstitial)
+            R.id.navCoupon->setAdsByCheck(adType?.couponAdBanner,adType?.couponAdInterstitial)
+            R.id.navDeal->setAdsByCheck("","")
+            R.id.nav_webView->setAdsByCheck("","")
+            R.id.navCouponDetail->setAdsByCheck(adType?.couponDetailBanner,"")
+            R.id.navDealDetail->setAdsByCheck(adType?.dealDetailBanner,"")
+        }
     }
 }

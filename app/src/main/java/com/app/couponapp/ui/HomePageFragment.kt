@@ -38,10 +38,6 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         }
     }
    private val onCouponItemClick:(CouponDataResponseItem,Boolean)->Unit = {data,isShare->
-       if(!isShare){
-           (activity as MainActivity).loadInterAdMob()
-           (activity as MainActivity).showInterAdMob()
-       }
        if(isShare){
            val intent = Intent()
            intent.action = Intent.ACTION_SEND
@@ -51,8 +47,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
            startActivity(intent)
        }else if(data.acf?.dealOrCoupon.equals("coupon",ignoreCase = true)){
            findNavController().navigate(R.id.navCouponDetail, bundleOf("couponData" to data))
+           (activity as MainActivity).showInterAdd("coupon")
        }else if(data.acf?.dealOrCoupon.equals("deal",ignoreCase = true)){
            findNavController().navigate(R.id.navDealDetail, bundleOf("dealData" to data))
+           (activity as MainActivity).showInterAdd("deal")
        }
    }
     private fun filterList(list: List<CouponDataResponseItem>?): List<CouponDataResponseItem> ?{
