@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AdSettings.addTestDevice("0bca348d-f3c4-4d13-8af3-352dfca0c8c7")
         //hideStatusActionBar()
         setObserver()
         setUpDrawer()
@@ -230,17 +231,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadFbInterAdd() {
-        if(interstitiaFblAd!=null) {
+        if(interstitiaFblAd!=null){
             interstitiaFblAd=null
         }
-       interstitiaFblAd = InterstitialAd(this, "YOUR_PLACEMENT_ID")
-        interstitiaFblAd?.loadAd(
+        interstitiaFblAd = InterstitialAd(this, "YOUR_PLACEMENT_ID")
+        if(interstitiaFblAd?.isAdLoaded == false) {
+            interstitiaFblAd?.loadAd(
                 interstitiaFblAd?.buildLoadAdConfig()
                     ?.withAdListener(InterstitialFbAdsImp(object : CustomAdsListener {
-                        override fun onAdLoad(p0: Ad?) {}
+                        override fun onAdLoad(p0: Ad?) {
+
+                        }
                     }))?.build()
             )
-
+        }
     }
 
     private fun adFbBannerSetUp() {
@@ -249,7 +253,6 @@ class MainActivity : AppCompatActivity() {
         binding.contentMainLayout.adViewBannerGoogle.makeGone()
         if(binding.contentMainLayout.bannerAdFb.childCount!=1) {
             binding.contentMainLayout.bannerAdFb.addView(addViewFbBanner)
-            AdSettings.addTestDevice("fef30bf7-91fd-40c8-ada5-16fa32ea3149")
         }
         addViewFbBanner.loadAd(
             addViewFbBanner.buildLoadAdConfig()
@@ -364,7 +367,7 @@ class MainActivity : AppCompatActivity() {
         when(currentFrag){
             R.id.navHomePage->setAdsByCheck(adType?.homeAdBanner,adType?.homeAdInterstitial)
             R.id.navCoupon->setAdsByCheck(adType?.couponAdBanner,adType?.couponAdInterstitial)
-            R.id.navDeal->setAdsByCheck("","")
+            R.id.navDeal->setAdsByCheck(adType?.dealAdBanner,adType?.dealAdInterstitial)
             R.id.nav_webView->setAdsByCheck("","")
             R.id.navCouponDetail->setAdsByCheck(adType?.couponDetailBanner,"")
             R.id.navDealDetail->setAdsByCheck(adType?.dealDetailBanner,"")

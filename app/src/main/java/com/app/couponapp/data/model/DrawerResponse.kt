@@ -12,6 +12,12 @@ data class DrawerResponse(
 
 @Parcelize
 data class Data(
+	@field:SerializedName("deal_ad_banner")
+	val dealAdBanner: String? = null,
+
+	@field:SerializedName("deal_ad_interstitial")
+	val dealAdInterstitial: String? = null,
+
 	@field:SerializedName("deal_detail_banner")
 	val dealDetailBanner: String? = null,
 
