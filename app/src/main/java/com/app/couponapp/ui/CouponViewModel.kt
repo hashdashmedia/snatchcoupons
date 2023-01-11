@@ -31,6 +31,7 @@ class CouponViewModel @Inject constructor(
 
     fun getCouponsListing(id:Int?=null){
        viewModelScope.launch {
+           _mutableCouponData.value=Resource.Loading()
            repository.getCouponsListing(id).flowOn(Dispatchers.IO)
                .catch {e->
                   _mutableCouponData.value=Resource.Error(e.message?:"")

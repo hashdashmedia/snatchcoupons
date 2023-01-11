@@ -21,6 +21,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     }
     private val couponViewModel by viewModels<CouponViewModel>()
     override fun getViewBinding()=FragmentHomePageBinding.inflate(layoutInflater)
+
     override fun observe() {
         couponViewModel.collectCouponData().launchAndCollectIn(this,Lifecycle.State.STARTED){it->
             when(it){
@@ -37,6 +38,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
         }
     }
+
    private val onCouponItemClick:(CouponDataResponseItem,Boolean)->Unit = {data,isShare->
        if(isShare){
            val intent = Intent()
@@ -54,6 +56,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
        }
    }
     private fun filterList(list: List<CouponDataResponseItem>?): List<CouponDataResponseItem> ?{
+        (activity as MainActivity).setListingData(list)
         val currentTimeDate = Date().time
         val list = list?.sortedByDescending{
             it.expire?.toDoubleOrNull()
@@ -92,7 +95,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     }
 
     private fun getCouponsListing() {
-        couponViewModel.getCouponsListing(48)
+        if((activity as MainActivity).getListingData()==null) {
+            couponViewModel.getCouponsListing(48)
+        }else{
+            couponItemAdapter.submitList(filterList((activity as MainActivity).getListingData()))
+        }
     }
 
     private fun setCouponAdapter() {

@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.app.couponapp.BuildConfig
 import com.app.couponapp.R
+import com.app.couponapp.data.model.CouponDataResponseItem
 import com.app.couponapp.data.model.DrawerResponse
 import com.app.couponapp.databinding.ActivityMainBinding
 import com.app.couponapp.databinding.SortItemLayoutBinding
@@ -31,7 +32,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var mInterstitialGoogleAd: InterstitialAd? = null
@@ -44,7 +44,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var mAppBarConfiguration: AppBarConfiguration
     private var drawerResponse: DrawerResponse? = null
+    private var listData: List<CouponDataResponseItem>?=null
     private val couponViewModel by viewModels<CouponViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -360,6 +362,10 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed(){
         super.onBackPressed()
     }
+    fun setListingData(list: List<CouponDataResponseItem>?){
+        this.listData=list
+    }
+    fun getListingData() = listData
 
     private fun adsAccCurrentFrag() {
         val currentFrag= navController.currentDestination?.id
